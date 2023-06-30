@@ -1,0 +1,166 @@
+
+/* Styles for the quiz container */
+#quiz-container {
+  position: relative;
+  z-index: 1;
+  max-width: 1400px;
+  max-height: 1400px;
+    height: 100%;
+  margin: 0 auto;
+  padding: 20px;
+  border: 2px solid #ccc;
+  border-radius: 3px;
+  background-color: #f7f7f7;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  overflow: scroll;
+}
+
+
+
+
+.message {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #F5F5F5; /* grey background */
+  color: #333333; /* black text */
+  font-size: 48px;
+  font-weight: bold;
+  text-align: center;
+  padding-top: 20%;
+  height: 100%;
+  z-index: 100;
+}
+
+   #quiz-container {
+     
+      margin: 0 auto;
+    }
+   
+
+#toggle-button {
+  position: absolute;
+  bottom: -0px;
+  right: 00px;
+  margin-bottom: 10px;
+    border: 2px;
+    z-index: 999;
+}
+
+
+/* Styles for the quiz title */
+#quiz-title1 {
+  font-size: 20px;
+  text-align: center;
+  margin-bottom: 20px;
+  font-family: "Montserrat", sans-serif;
+    font-weight: 4000;
+}
+
+/* Styles for the quiz title */
+#quiz-title {
+  font-size: 30px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+#quiz-title {
+  font-size: 25px;
+  font-weight: bold;
+  font-family: "Montserrat", sans-serif;
+  text-align: center;
+  margin-bottom: 20px;
+  background: linear-gradient(90deg, #8b0000, #8b0000, #8b0000, #8b0000, #8b0000, #ff7f00, #ffd700, #ff7f00, #8b0000, #8b0000, #8b0000, #8b0000, #8b0000);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-size: 200% auto;
+  animation: shimmer 4s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+
+
+h1 {
+color: #333333;
+font-size: 36px;
+font-weight: 700;
+margin-bottom: 30px;
+}
+
+
+
+.question {
+color: #333333;
+font-size: 22px;
+font-weight: 500;
+margin-bottom: 20px;
+}
+
+#answer-buttons {
+display: flex;
+flex-direction: column;
+align-items: center;
+}
+
+button {
+  background-color: #ffffff;
+  border: 1px solid #333333; /* thinner border */
+  border-radius: 50px;
+  color: #333333;
+  cursor: pointer;
+  font-size: 18px;
+  margin: 6px 0;
+  padding: 12px 20px;
+  transition: all 0.2s ease;
+     font-weight: 500;
+}
+
+/*button:hover {
+  background-color: #1A237E; 
+  color: #ffffff; 
+} */
+
+/* Move the result above the question */
+.result {
+  color: #333333;
+  font-size: 24px;
+  font-weight: 700;
+  margin-top: 10px;
+  margin-bottom: 20px;
+     position: absolute;
+  top: 0;
+  right: 0;
+  margin: 10px;
+}
+
+/* Move the timer above the question */
+#countdown {
+  font-size: 24px;
+  font-weight: 700;
+  position: relative;
+}
+
+.refresh-box {
+  padding: 20px;
+  background-color: #f1f1f1;
+  text-align: center;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+
+
+.hidden {
+  display: none;
+}

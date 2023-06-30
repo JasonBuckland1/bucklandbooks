@@ -1,0 +1,136 @@
+/* Styles for the quiz container */
+#quiz-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  background-color: #f7f7f7;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  position: relative;
+}
+
+/* Styles for the quiz title */
+#quiz-title {
+  font-size: 32px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* Styles for the question */
+.question {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+/* Styles for the answer options */
+.answer-options {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.answer-option {
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+/* Styles for the answer options when hovered */
+.answer-option:hover {
+  background-color: #eee;
+}
+
+/* Styles for the selected answer option */
+.answer-option.selected {
+  background-color: #5cb85c;
+  color: #fff;
+  border-color: #5cb85c;
+}
+
+/* Styles for the correct answer feedback */
+.feedback {
+  font-size: 16px;
+  margin-top: 10px;
+  color: #5cb85c;
+}
+
+/* Styles for the incorrect answer feedback */
+.feedback.error {
+  color: #d9534f;
+}
+
+/* Styles for the "Next" button */
+#next-button {
+  display: block;
+  margin-top: 20px;
+  padding: 10px;
+  background-color: #5cb85c;
+  color: #fff;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+}
+
+/* Styles for the hidden "Next" button */
+#next-button.hidden {
+  display: none;
+}
+
+/* Styles for the score */
+#score {
+  font-size: 24px;
+  text-align: center;
+  margin-top: 20px;
+}
+
+/* Styles for the score number */
+#score span {
+  font-weight: bold;
+  color: #5cb85c;
+}
+
+/* Styles for the quiz option label when hovered */
+.quiz-option label:hover {
+  background-color: gold;
+  cursor: pointer;
+}
+
+.star {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background: url(/img/star.png) no-repeat;
+  animation: star-fly 1s ease-out;
+}
+
+@keyframes star-fly {
+  from { transform: translate(0, 0); }
+  to { transform: translate(400px, -400px); }
+}
+
+#time-up-message {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px;
+  font-weight: bold;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: rgba(255, 0, 0, 0.5);
+  color: white;
+  z-index: 1;
+}
+
+.hidden {
+  display: none;
+}
