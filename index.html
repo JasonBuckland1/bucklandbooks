@@ -134,279 +134,379 @@
     <script>
         const groups = [
     {
-        groupNumber: 0.4,
-        totalQuestions: 3,
-        questions: [
-            { question: "", questionImage: "img/cat.png", choices: ["The dog", "The cat", "The fish"], correctAnswer: 1 },
-            { question: "", questionImage: "img/dog.png", choices: ["The dog", "The cat", "The fish"], correctAnswer: 0 },
-            { question: "", questionImage: "img/fish.png", choices: ["The dog", "The cat", "The fish"], correctAnswer: 2 },
-        ]
-    },
-    {
-        groupNumber: 0.5,
-        totalQuestions: 3,
-        questions: [
-            { question: "Which element has the chemical symbol 'Au'?", choices: ["Silver", "Gold", "Iron", "Aluminum"], correctAnswer: 1 },
-            { question: "What's the world's longest river?", choices: ["Amazon", "Nile", "Mississippi", "Yangtze"], correctAnswer: 1 },
-            { question: "Who painted the Mona Lisa?", choices: ["Vincent van Gogh", "Leonardo da Vinci", "Pablo Picasso", "Michelangelo"], correctAnswer: 1 },
-        ]
-    },
-    {
-        groupNumber: 0.6,
-        totalQuestions: 3,
-        questions: [
-            { question: "Which country is known as the Land Down Under?", choices: ["New Zealand", "South Africa", "Australia", "Indonesia"], correctAnswer: 2 },
-            { question: "In which continent is the Sahara Desert located?", choices: ["Asia", "Australia", "Africa", "North America"], correctAnswer: 2 },
-            { question: "What is the capital of Canada?", choices: ["Toronto", "Montreal", "Vancouver", "Ottawa"], correctAnswer: 3 },
-        ]
-    },
-    {
-        groupNumber: 0.7,
-        totalQuestions: 3,
-        questions: [
-            { question: "Which planet is the largest in our Solar System?", choices: ["Earth", "Mars", "Jupiter", "Venus"], correctAnswer: 2 },
-            { question: "Which bird is known as the symbol of peace?", choices: ["Dove", "Sparrow", "Eagle", "Peacock"], correctAnswer: 0 },
-            { question: "How many players are there in a standard football (soccer) team?", choices: ["9", "10", "11", "12"], correctAnswer: 2 },
-        ]
-    },
-    {
-        groupNumber: 0.8,
-        totalQuestions: 3,
-        questions: [
-            { question: "In Greek mythology, who turned all that he touched into gold?", choices: ["Zeus", "Apollo", "Midas", "Ares"], correctAnswer: 2 },
-            { question: "Which Shakespearean play is also referred to as 'What You Will'?", choices: ["Twelfth Night", "Macbeth", "Hamlet", "The Tempest"], correctAnswer: 0 },
-            { question: "What is the tallest mountain in the world?", choices: ["K2", "Mount Kilimanjaro", "Mount Everest", "Mount McKinley"], correctAnswer: 2 },
-        ]
-    },
-    {
-        groupNumber: 0.9,
-        totalQuestions: 3,
-        questions: [
-            { question: "Question", choices: ["a1", "a2", "a3", "a4"], correctAnswer: 2 },
-        ]
-    },
-    {
-        groupNumber: 1.0,
-        totalQuestions: 3,
-        questions: [
-            { question: "Question", choices: ["a1", "a2", "a3", "a4"], correctAnswer: 2 },
-        ]
-    },
-    {
-        groupNumber: 1.1,
-        totalQuestions: 3,
-        questions: [
-            { question: "Question", choices: ["a1", "a2", "a3", "a4"], correctAnswer: 2 },
-        ]
-    },
-    {
-        groupNumber: 1.2,
-        totalQuestions: 3,
-        questions: [
-            { question: "Question", choices: ["a1", "a2", "a3", "a4"], correctAnswer: 2 },
-        ]
-    },
-    {
-        groupNumber: 1.3,
-        totalQuestions: 3,
-        questions: [
-            { question: "Question", choices: ["a1", "a2", "a3", "a4"], correctAnswer: 2 },
-        ]
-    },
-    {
-        groupNumber: 1.4,
-        totalQuestions: 3,
-        questions: [
-            { question: "Question", choices: ["a1", "a2", "a3", "a4"], correctAnswer: 2 },
-        ]
-    },
-    {
-        groupNumber: 1.5,
-        totalQuestions: 3,
-        questions: [
-            { question: "Question", choices: ["a1", "a2", "a3", "a4"], correctAnswer: 2 },
-        ]
-    },
-    {
-        groupNumber: 1.6,
-        totalQuestions: 3,
-        questions: [
-            { question: "Question", choices: ["a1", "a2", "a3", "a4"], correctAnswer: 2 },
-        ]
-    },
-    {
-        groupNumber: 1.7,
-        totalQuestions: 3,
-        questions: [
-            { question: "Question", choices: ["a1", "a2", "a3", "a4"], correctAnswer: 2 },
-        ]
-    },
-    {
-        groupNumber: 1.8,
-        totalQuestions: 3,
-        questions: [
-            { question: "Question", choices: ["a1", "a2", "a3", "a4"], correctAnswer: 2 },
-        ]
-    },
-    {
-        groupNumber: 1.9,
-        totalQuestions: 3,
-        questions: [
-            { question: "Question", choices: ["a1", "a2", "a3", "a4"], correctAnswer: 2 },
-        ]
-    },
-    {
-        groupNumber: 2.0,
-        totalQuestions: 3,
-        questions: [
-            { question: "Question", choices: ["a1", "a2", "a3", "a4"], correctAnswer: 2 },
-        ]
-    },
-    {
-        groupNumber: 2.1,
-        totalQuestions: 3,
-        questions: [
-            { question: "Question", choices: ["a1", "a2", "a3", "a4"], correctAnswer: 2 },
-        ]
-    },
-    {
-        groupNumber: 2.2,
-        totalQuestions: 3,
-        questions: [
-            { question: "Question", choices: ["a1", "a2", "a3", "a4"], correctAnswer: 2 },
-        ]
-    },
-    {
-        groupNumber: 2.3,
-        totalQuestions: 3,
-        questions: [
-            { question: "Question", choices: ["a1", "a2", "a3", "a4"], correctAnswer: 2 },
-        ]
-    },
-    {
-        groupNumber: 2.4,
-        totalQuestions: 3,
-        questions: [
-            { question: "Question", choices: ["a1", "a2", "a3", "a4"], correctAnswer: 2 },
-        ]
-    },
-    {
-        groupNumber: 2.5,
-        totalQuestions: 3,
-        questions: [
-            { question: "Question", choices: ["a1", "a2", "a3", "a4"], correctAnswer: 2 },
-        ]
-    },
-    {
-        groupNumber: 2.6,
-        totalQuestions: 3,
-        questions: [
-            { question: "Question", choices: ["a1", "a2", "a3", "a4"], correctAnswer: 2 },
-        ]
-    },
-    {
-        groupNumber: 2.7,
-        totalQuestions: 3,
-        questions: [
-            { question: "Question", choices: ["a1", "a2", "a3", "a4"], correctAnswer: 2 },
-        ]
-    },
-    {
-        groupNumber: 2.8,
-        totalQuestions: 3,
-        questions: [
-            { question: "Question", choices: ["a1", "a2", "a3", "a4"], correctAnswer: 2 },
-        ]
-    },
-    {
-        groupNumber: 2.9,
-        totalQuestions: 3,
-        questions: [
-            { question: "Question", choices: ["a1", "a2", "a3", "a4"], correctAnswer: 2 },
-        ]
-    },
-    {
-        groupNumber: 3.0,
-        totalQuestions: 3,
-        questions: [
-            { question: "Question", choices: ["a1", "a2", "a3", "a4"], correctAnswer: 2 },
-        ]
-    },
-    {
         groupNumber: 3.1,
-        totalQuestions: 3,
+        totalQuestions: 60,
         questions: [
-            { question: "Question", choices: ["a1", "a2", "a3", "a4"], correctAnswer: 2 },
+          
+      { question: "", choices: ["The United Kingdom", "The United States", "Canada", "Germany"], correctAnswer: 0, questionImage: "img/quizImg/ukFlag.jpg" },
+      { question: "", choices: ["The United Kingdom", "The United States", "Canada", "Germany"], correctAnswer: 2, questionImage: "img/quizImg/canadaFlag.jpg" },
+      { question: "I ____ 15 years old.", choices: ["am", "are", "is"], correctAnswer: 0 },
+      { question: "You ____ 12 years old.", choices: ["am", "are", "is"], correctAnswer: 1 },
+      { question: "He ____ 9 years old.", choices: ["am", "are", "is"], correctAnswer: 2 },
+      { question: "We ____ 14 years old.", choices: ["am", "are", "is"], correctAnswer: 1 },
+      { question: "They ____ 19 years old.", choices: ["am", "are", "is"], correctAnswer: 1 },
+     
+      { question: "4", choices: ["for", "fore", "four"], correctAnswer: 2 },
+      { question: "59", choices: ["fiftee nine", "fifty nine", "fifteen nine"], correctAnswer: 1 },
+      { question: "19", choices: ["ninety", "nineteen", "nine ten"], correctAnswer: 1 },
+      { question: "", choices: ["I am Spain", "I am from Spain", "I from Spain", "I is Spain"], correctAnswer: 1, questionImage: "img/quizImg/spanishFlag.jpg" },
+      { question: "", choices: ["We are Japanese", "We are Japan"], correctAnswer: 0, questionImage: "img/quizImg/japanesePeople.jpg" },
+      { question: "I ____ Australian.", choices: ["am", "are", "am from", "are from"], correctAnswer: 0,},
+      { question: "You ____ Italy.", choices: ["am", "are", "am from", "are from"], correctAnswer: 3,},
+      { question: "Bobby is ____ dog.", choices: ["my", "I",], correctAnswer: 0, questionImage: "img/quizImg/myDog.jpg" },
+      { question: "____ sister is called Sarah.", choices: ["He", "Her",], correctAnswer: 1,},
+      { question: "____ turtle is 50 years old.", choices: ["He", "His",], correctAnswer: 1,},
+        
+      { question: "____ Lion is from Kenya", choices: ["Our", "We",], correctAnswer: 0,},
+      { question: "____ pig lives on a farm.", choices: ["She", "Her", "They"], correctAnswer: 1,},
+      { question: "They are ____ sheep.", choices: ["we", "our",], correctAnswer: 1, questionImage: "img/quizImg/ourSheep.jpg"},
+      { question: "That ____ her cat.", choices: ["is", "are",], correctAnswer: 0,},
+      { question: "Which is correct? 哪个是对的？", choices: ["That is her grandparent's house.", "That is her grandparents' house.",], correctAnswer: 1,},
+      { question: "James is ____ aunt.", choices: ["Sarah", "Sarah's", "Sarahs'"], correctAnswer: 1,},
+      { question: "What is it? 它是什么？", choices: ["Sunglasses", "Glasses"], correctAnswer: 0, questionImage: "img/quizImg/sunglasses.jpg"},
+      { question: "____ are my books.", choices: ["That", "Those", "This"], correctAnswer: 1,},
+      { question: "____ is Simon's phone.", choices: ["Those", "That",], correctAnswer: 1,},
+      { question: "Which is correct? 哪个是对的", choices: ["These are our keys.", "That are our keys.",], correctAnswer: 0, questionImage: "img/quizImg/keys.jpg"},
+        
+      { question: "Which spelling? 哪个拼写?", choices: ["Dictionarys", "Dictionarees", "Dictionaries"], correctAnswer: 2, questionImage: "img/quizImg/dictionaries.jpg"},
+      { question: "That ____ her book.", choices: ["are", "or", "is",], correctAnswer: 2,},
+      { question: "Which spelling? 哪个拼写?", choices: ["bokses", "boxs", "boxes",], correctAnswer: 2, questionImage: "img/quizImg/boxes.jpg"},
+      { question: "Which spelling? 哪个拼写", choices: ["toothbrushs", "toothbrushes",], correctAnswer: 1, questionImage: "img/quizImg/toothbrushes.jpg"},
+      { question: "____ pencils are hers.", choices: ["This", "That", "These",], correctAnswer: 2,},
+      { question: "Which is correct? 哪个是对的?", choices: ["waiter", "electrician", "pilot", "scientist"], correctAnswer: 3, questionImage: "img/quizImg/scientist.jpg"},
+      { question: "Which is correct? 哪个是对的?", choices: ["vet", "firefighter", "doctor", "driver"], correctAnswer: 1, questionImage: "img/quizImg/firefighter.jpg"},
+      { question: "She ____ farmer.", choices: ["are an", "am an", "is a", "are"], correctAnswer: 2,},
+      { question: "We ____ teachers.", choices: ["are an", "am an", "is a", "are"], correctAnswer: 3,},
+      { question: "They ____ drivers.", choices: ["am", "are", "is",], correctAnswer: 1,},
+        
+      { question: "He ____ a vet.", choices: ["are", "is", "am"], correctAnswer: 1,},
+      { question: "We ____ sales assistants.", choices: ["am", "are", "is"], correctAnswer: 1,},
+      { question: "Which is correct? 哪个是对的?", choices: ["farm", "office", "restaurant", "construction site"], correctAnswer: 2, questionImage: "img/quizImg/restaurant.jpg"},
+      { question: "A nurse is in a ____ .", choices: ["restaurant", "farm", "hospital"], correctAnswer: 2,},
+      { question: "Which is correct? 哪个是对的?", choices: ["plants", "food", "people"], correctAnswer: 1, questionImage: "img/quizImg/food.jpg"},
+      { question: "I ____ a vet.", choices: ["am", "is", "are"], correctAnswer: 0,},
+      { question: "She ____ a businesswoman.", choices: ["am", "is", "are"], correctAnswer: 1,},
+      { question: "You ____ a nurse.", choices: ["is", "am", "are"], correctAnswer: 2,},
+      { question: "We work ____ a farm.", choices: ["in", "on", "over"], correctAnswer: 1,},
+      { question: "My sister works ____ a cafe.", choices: ["under", "on", "in"], correctAnswer: 2,},
+        
+      { question: "Dan works ____ a hospital.", choices: ["on", "in"], correctAnswer: 1,},
+      { question: "My dad works ____ a construction site.", choices: ["on", "in"], correctAnswer: 0,},
+      { question: "Tom is a chef, and he works with _____ .", choices: ["animals", "food", "children"], correctAnswer: 1,},
+      { question: "Which is correct? 哪个是对的?", choices: ["noon", "midnight"], correctAnswer: 0, questionImage: "img/quizImg/noon.jpg"},
+      { question: "Which is correct? 哪个是对的?", choices: ["noon", "midnight"], correctAnswer: 1, questionImage: "img/quizImg/midnight.jpg"},
+      { question: "Which is correct? 哪个是对的?", choices: ["3am", "3pm"], correctAnswer: 0, questionImage: "img/quizImg/3am.jpg"},
+      { question: "Which is correct? 哪个是对的?", choices: ["3am", "3pm"], correctAnswer: 1, questionImage: "img/quizImg/3pm.jpg"},
+      { question: "Which is correct? 哪个是对的?", choices: ["It's quarter to six.", "It's quarter to seven."], correctAnswer: 1, questionImage: "img/quizImg/quartertoseven.jpg"},
+      { question: "Which is correct? 哪个是对的?", choices: ["Dawn", "Afternoon", "Evening"], correctAnswer: 1, questionImage: "img/quizImg/afternoon.jpg"},
+      { question: "Which is correct? 哪个是对的?", choices: ["Dawn", "Afternoon", "Evening"], correctAnswer: 2, questionImage: "img/quizImg/evening.jpg"}
         ]
     },
     {
         groupNumber: 3.2,
-        totalQuestions: 3,
+        totalQuestions: 60,
         questions: [
-            { question: "Question", choices: ["a1", "a2", "a3", "a4"], correctAnswer: 2 },
+             { question: "I ____ lunch at 2pm every day.", choices: ["eat", "eats", "eating"], correctAnswer: 0 },
+      { question: "You ____ lunch at 2pm every day.", choices: ["eat", "eats", "eating"], correctAnswer: 0 },
+      { question: "He ____ lunch at 2pm every day.", choices: ["eat", "eats", "eating"], correctAnswer: 1 },
+      { question: "It ____ lunch at 2pm every day.", choices: ["eat", "eats", "eating"], correctAnswer: 1 },
+      { question: "I ____ school at 10am.", choices: ["start", "starting", "starts"], correctAnswer: 0 },
+      { question: "Ellen ____ up at 5 o'clock.", choices: ["getting", "get", "gets"], correctAnswer: 2 },
+      { question: "I ____ a shower in the evening.", choices: ["taking", "take", "takes"], correctAnswer: 1 },
+      { question: "My brother ____ with animals.", choices: ["work", "works", "working"], correctAnswer: 1 },
+      { question: "Tom ____ up at 7:30am.", choices: ["get", "gets"], correctAnswer: 1 },
+      { question: "Shona ____ TV in the evening.", choices: ["watch", "watches"], correctAnswer: 1 },
+        
+      { question: "We ____ to bed at midnight.", choices: ["going", "go", "goes"], correctAnswer: 1 },
+      { question: "I ____ school at noon.", choices: ["starting", "start", "starts"], correctAnswer: 1 },
+      { question: "She ____ an hour for lunch.", choices: ["take", "taking", "takes"], correctAnswer: 2 },
+      { question: "He ____ his car every weekend.", choices: ["wash", "washes", "washing"], correctAnswer: 1 },
+      { question: "She ____ for eight hours.", choices: ["sleep", "sleeps"], correctAnswer: 1 },
+      { question: "I ____ to work.", choices: ["driving", "drive", "drives"], correctAnswer: 1 },
+      { question: "I go to school from Monday ____ Wednesday.", choices: ["at", "on", "to"], correctAnswer: 2 },
+      { question: "I ____ a bath on Wednesdays.", choices: ["take", "takes", "taking"], correctAnswer: 0 },
+      { question: "I watch TV ____ Sundays.", choices: ["when", "at", "on"], correctAnswer: 2 },
+      { question: "Colin sleeps ____ 11pm to 6am.", choices: ["at", "from", "on"], correctAnswer: 1 },
+        
+      { question: "Jack starts school at 8am ____ Mondays.", choices: ["at", "on"], correctAnswer: 1 },
+      { question: "Which is correct? 哪个是对的？", choices: ["I work from Monday to Thursday.", "I work of Monday to Thursday."], correctAnswer: 0 },
+      { question: "Which is correct? 哪个是对的？", choices: ["You read the newspaper in Sundays.", "You read the newspaper on Sundays."], correctAnswer: 1 },
+      { question: "He ____ in school.", choices: ["is not", "are not", "am not"], correctAnswer: 0 },
+      { question: "You ____ at work.", choices: ["is not", "are not", "am not"], correctAnswer: 1 },
+      { question: "Which is correct? 哪个是对的？", choices: ["It am not 10 o'clock in the morning.", "It is not 10 o'clock in the morning."], correctAnswer: 1 },
+      { question: "which is correct? 哪个是对的？", choices: ["My brother amn't married", "My brother aren't married.", "My brother isn't married."], correctAnswer: 2 },
+      { question: "He ____ at school.", choices: ["am not", "aren't", "isn't"], correctAnswer: 2 },
+      { question: "I ____ work outside.", choices: ["do not", "does not"], correctAnswer: 0 },
+      { question: "He _____ work outside.", choices: ["do not", "does not"], correctAnswer: 1 },
+        
+      { question: "She ____ speak English.", choices: ["don't", "doesn't"], correctAnswer: 1 },
+      { question: "____ you American?", choices: ["Am", "Are", "Is"], correctAnswer: 1 },
+      { question: "____ she Australian?", choices: ["Am", "Are", "Is"], correctAnswer: 2 },
+      { question: "____ it Chinese?", choices: ["Am", "Are", "Is"], correctAnswer: 2 },
+      { question: "____ you work in a school?", choices: ["Does", "Do"], correctAnswer: 1 },
+      { question: "____ they live in Paris?", choices: ["Does", "Do?"], correctAnswer: 1 },
+      { question: "_____ they eat breakfast?", choices: ["Do", "Does"], correctAnswer: 0 },
+      { question: "_____ she like coffee?", choices: ["Is", "Do", "Does"], correctAnswer: 2 },
+      { question: "Does he live here?", choices: ["Yes, he do.", "Yes, he does."], correctAnswer: 1 },
+      { question: "Do they live in Sweden?", choices: ["Yes, they do.", "Yes, they does."], correctAnswer: 0 },
+        
+      { question: "Do you eat breakfast?", choices: ["No, I'm not.", "No, I don't", "No, I aren't.", "No, I isn't."], correctAnswer: 1 },
+      { question: "Is that your dog?", choices: ["No, it doesn't.", "No, it not.", "No, it isn't.", "No, it aren't."], correctAnswer: 2 },
+      { question: "What ____ their names?", choices: ["is", "are", "am"], correctAnswer: 1 },
+      { question: "What ____ the time?", choices: ["is", "are", "am"], correctAnswer: 0 },
+      { question: "What ____ they?", choices: ["is", "are", "am"], correctAnswer: 1 },
+      { question: "____ is it cold in here?", choices: ["Which", "Why", "Who", "What"], correctAnswer: 1 },
+      { question: "Which is correct? 哪个是对的？", choices: ["Factory", "Pharmacy", "Castle", "Church"], correctAnswer: 0, questionImage: "img/quizImg/factory.jpg" },
+      { question: "Which is correct? 哪个是对的？", choices: ["Factory", "Pharmacy", "Castle", "Church"], correctAnswer: 2, questionImage: "img/quizImg/castle.jpg" },
+      { question: "There ____ a hospital in my town.", choices: ["is", "are", "am"], correctAnswer: 0 },
+      { question: "There ____ three restaurants in my town.", choices: ["is", "are", "am"], correctAnswer: 1 },
+        
+      { question: "There ____ stores.", choices: ["isn't no", "aren't any", "aren't no"], correctAnswer: 1 },
+      { question: "There ____ theatres.", choices: ["are is", "are any", "are no"], correctAnswer: 2 },
+      { question: "There is ____ good cafe in the park.", choices: ["a", "an", "the"], correctAnswer: 0 },
+      { question: "It is ____ dog's favourite toy.", choices: ["a", "an", "the"], correctAnswer: 2 },
+      { question: "See you at ____ bus station.", choices: ["a", "an", "the"], correctAnswer: 2 },
+      { question: "Is there ____ swimming pool near here?", choices: ["a", "an", "any"], correctAnswer: 0 },
+      { question: "Are there ____ people in that shop?", choices: ["a", "an", "any"], correctAnswer: 2 },
+      { question: "Which is correct? 哪个是对的？", choices: ["opposite", "between", "block"], correctAnswer: 1, questionImage: "img/quizImg/between.jpg" },
+      { question: "The cinema is ____ of the intersection.", choices: ["opposite", "behind", "between", "on the corner"], correctAnswer: 0, questionImage: "img/quizImg/cinema.jpg" },
+      { question: "There's a hotel, ____ there isn't a shop.", choices: ["and", "but", "which"], correctAnswer: 1 }
         ]
     },
     {
         groupNumber: 3.3,
-        totalQuestions: 3,
+        totalQuestions: 60,
         questions: [
-            { question: "Question", choices: ["a1", "a2", "a3", "a4"], correctAnswer: 2 },
+            { question: "The house is ____ .", choices: ["beautiful", "horrible", "busy", "old"], correctAnswer: 0, questionImage: "img/quizImg/beautiful.jpg" },
+      { question: "The house is ____ .", choices: ["beautiful", "horrible", "busy", "old"], correctAnswer: 2, questionImage: "img/quizImg/busy.jpg" },
+      { question: "The house is ____ .", choices: ["beautiful", "horrible", "busy", "old"], correctAnswer: 3, questionImage: "img/quizImg/old.jpg" },
+      { question: "", choices: ["countryside", "mountain", "lake", "river"], correctAnswer: 1, questionImage: "img/quizImg/mountain.jpg" },
+      { question: "", choices: ["beach", "sea", "river", "hill"], correctAnswer: 3, questionImage: "img/quizImg/hill.jpg" },
+      { question: "There are ____ people.", choices: ["some", "a few", "lots of"], correctAnswer: 2, questionImage: "img/quizImg/people.jpg" },
+      { question: "There are ____ trees.", choices: ["some", "many", "lots of"], correctAnswer: 0, questionImage: "img/quizImg/trees.jpg" },
+      { question: "Small = Big.   Horrible = ____ .", choices: ["easy", "beautiful", "large", "new"], correctAnswer: 1 },
+      { question: "It is noisy in town ____ there are lots of cars.", choices: ["so", "or", "because"], correctAnswer: 2 },
+      { question: "The nurse is busy ____ there are lots of patients.", choices: ["because", "so", "or"], correctAnswer: 0 },
+        
+          { question: "Which is correct? 哪个是对的？", choices: ["living room", "bathroom", "attic", "basement"], correctAnswer: 2, questionImage: "img/quizImg/attic.jpg" },
+      { question: "Which is correct? 哪个是对的？", choices: ["stove", "wardrobe", "couch", "garage"], correctAnswer: 0, questionImage: "img/quizImg/stove.jpg" },
+      { question: "We ____ a cat.", choices: ["have", "has"], correctAnswer: 0 },
+      { question: "She ____ a dog.", choices: ["have", "has"], correctAnswer: 1 },
+      { question: "They ____ a garage.", choices: ["have", "has"], correctAnswer: 0 },
+      { question: "He ____ a fridge.", choices: ["have", "has"], correctAnswer: 1 },
+      { question: "I ____ a new car.", choices: ["have", "has"], correctAnswer: 0 },
+      { question: "The village ____ have any stores.", choices: ["doesn't", "don't"], correctAnswer: 0 },
+      { question: "You ____ have any sisters.", choices: ["doesn't", "don't"], correctAnswer: 1 },
+      { question: "My city ____ have a castle.", choices: ["doesn't", "don't"], correctAnswer: 0 },
+        
+          { question: "Which is correct? 哪个是对的？", choices: ["microwave", "dishwasher", "kettle", "toaster"], correctAnswer: 3, questionImage: "img/quizImg/toaster.jpg" },
+      { question: "Which is correct? 哪个是对的？", choices: ["microwave", "dishwasher", "kettle", "toaster"], correctAnswer: 0, questionImage: "img/quizImg/microwave.jpg" },
+      { question: "Which is correct? 哪个是对的？", choices: ["meat", "seafood", "fruit", "vegetables"], correctAnswer: 1, questionImage: "img/quizImg/seafood.jpg" },
+      { question: "This is a ____ of milk.", choices: ["carton", "jar", "box", "tube"], correctAnswer: 0 },
+      { question: "This is a ____ of toothpaste.", choices: ["carton", "jar", "box", "tube"], correctAnswer: 3, questionImage: "img/quizImg/toothpaste.jpg" },
+      { question: "How ____ cakes are there?", choices: ["many", "much"], correctAnswer: 0 },
+      { question: "How ____ sugar is there?", choices: ["many", "much"], correctAnswer: 1 },
+      { question: "How ____ oranges are there?", choices: ["many", "much"], correctAnswer: 0 },
+      { question: "How ____ chocolate is there?", choices: ["many", "much"], correctAnswer: 1 },
+      { question: "There is ____ sugar.", choices: ["too many", "too much"], correctAnswer: 1 },
+        
+          { question: "They have ____ apples.", choices: ["too many", "too much"], correctAnswer: 0 },
+      { question: "Tom has too many ____ .", choices: ["egg", "eggs"], correctAnswer: 1 },
+      { question: "There is ____ flour.", choices: ["too many", "too much"], correctAnswer: 1 },
+      { question: "There ____ too much sugar in the cake.", choices: ["are", "is"], correctAnswer: 1 },
+      { question: "There ____ too much salt.", choices: ["is", "are"], correctAnswer: 0 },
+      { question: "There ____ enough sugar.", choices: ["aren't", "isn't", "weren't"], correctAnswer: 1 },
+      { question: "Which is correct? 哪个是对的？", choices: ["shirt", "blouse", "dress", "skirt"], correctAnswer: 3, questionImage: "img/quizImg/skirt.jpg" },
+      { question: "Which is correct? 哪个是对的？", choices: ["jeans", "jacket", "coat", "raincoat"], correctAnswer: 0, questionImage: "img/quizImg/jeans.jpg" },
+      { question: "Which is correct? 哪个是对的？", choices: ["socks", "boots", "shoes", "sneakers"], correctAnswer: 3, questionImage: "img/quizImg/sneakers.jpg" },
+      { question: "Which is correct? 哪个是对的？", choices: ["smart", "casual", "suit", "uniform"], correctAnswer: 2, questionImage: "img/quizImg/suit.jpg" },
+        
+          { question: "Sarah ____ a red hat.", choices: ["own", "owns"], correctAnswer: 1 },
+      { question: "They ____ a new shirt!", choices: ["Choose", "Chooses"], correctAnswer: 0 },
+      { question: "Let's ____ new clothes.", choices: ["buy", "buys"], correctAnswer: 0 },
+      { question: "'Does this sweater fit? 'No, it is ____ .' ", choices: ["not big enough", "big enough", "too big"], correctAnswer: 2, questionImage: "img/quizImg/big.jpg" },
+      { question: "This is a ____ hat.", choices: ["lovely green", "green lovely"], correctAnswer: 0 },
+      { question: "We have a ____ car.", choices: ["old horrible", "horrible old"], correctAnswer: 1 },
+      { question: "James has a ____ cat.", choices: ["beautiful old", "old beautiful"], correctAnswer: 0 },
+      { question: "He is a ____ actor.", choices: ["brilliant young", "young brilliant"], correctAnswer: 0 },
+      { question: "This is a ____ book.", choices: ["new great", "great new"], correctAnswer: 1 },
+      { question: "This shoe is made of ____ .", choices: ["metal", "wool", "leather", "plastic"], correctAnswer: 2, questionImage: "img/quizImg/shoe.jpg" },
+        
+          { question: "That duck is made of ____ .", choices: ["plastic", "wood", "glass", "paper"], correctAnswer: 0, questionImage: "img/quizImg/duck.jpg" },
+      { question: "____ are busy streets.", choices: ["This", "These"], correctAnswer: 1 },
+      { question: "Which is correct? 哪个是对的？", choices: ["The town is busy.", "The town is a busy."], correctAnswer: 0 },
+      { question: "Young = Old.   Difficult = ____ .", choices: ["slow", "easy", "new", "bad"], correctAnswer: 1 },
+      { question: "My village is quiet ____ there are only a few families.", choices: ["but", "because", "also"], correctAnswer: 1 },
+      { question: "Simon lives on a farm ____ he is a farmer.", choices: ["but", "because", "also"], correctAnswer: 1 },
+      { question: "She ____ a small child.", choices: ["have", "has"], correctAnswer: 1 },
+      { question: "They put their food in the ____ .", choices: ["dishwasher", "kettle", "microwave", "plate"], correctAnswer: 2 },
+      { question: "There is ____ rice.", choices: ["100", "lots", "some"], correctAnswer: 2, questionImage: "img/quizImg/rice.jpg" },
+      { question: "____ potatoes are there?", choices: ["How many", "How much"], correctAnswer: 0 }
         ]
     },
     {
         groupNumber: 3.4,
-        totalQuestions: 3,
+        totalQuestions: 60,
         questions: [
-            { question: "Question", choices: ["a1", "a2", "a3", "a4"], correctAnswer: 2 },
-        ]
-    },
-    {
-        groupNumber: 3.5,
-        totalQuestions: 3,
-        questions: [
-            { question: "Question", choices: ["a1", "a2", "a3", "a4"], correctAnswer: 2 },
-        ]
-    },
-    {
-        groupNumber: 3.6,
-        totalQuestions: 3,
-        questions: [
-            { question: "Question", choices: ["a1", "a2", "a3", "a4"], correctAnswer: 2 },
-        ]
-    },
-    {
-        groupNumber: 3.7,
-        totalQuestions: 3,
-        questions: [
-            { question: "Question", choices: ["a1", "a2", "a3", "a4"], correctAnswer: 2 },
-        ]
-    },
-    {
-        groupNumber: 3.8,
-        totalQuestions: 3,
-        questions: [
-            { question: "Question", choices: ["a1", "a2", "a3", "a4"], correctAnswer: 2 },
-        ]
-    },
-    {
-        groupNumber: 3.9,
-        totalQuestions: 3,
-        questions: [
-            { question: "Question", choices: ["a1", "a2", "a3", "a4"], correctAnswer: 2 },
-        ]
-    },
-    {
-        groupNumber: 4.0,
-        totalQuestions: 3,
-        questions: [
-            { question: "Question", choices: ["a1", "a2", "a3", "a4"], correctAnswer: 2 },
+            { question: "She ____ surfing on the weekend.", choices: ["going", "go", "goes"], correctAnswer: 2 },
+      { question: "We don't ____ fishing at the lake.", choices: ["go","going", "goes"], correctAnswer: 0 },
+      { question: "My friend Josh ____ running in town.", choices: ["go", "goes", "going"], correctAnswer: 1 },
+      { question: "Veronica ____ dancing with friends on the weekend.", choices: ["going", "go", "goes"], correctAnswer: 2 },
+      { question: "I ____ horse riding in France every year.", choices: ["go", "going", "goes"], correctAnswer: 0 },
+      { question: "I ____ .", choices: ["go to the gym", "go camping", "go out for a meal", "go sightseeing"], correctAnswer: 1, image: "img/quizImg/camping.jpg" },
+      { question: "I ____ .", choices: ["go bird watching", "do yoga", "visit a museum", "go shopping"], correctAnswer: 2, questionImage: "img/quizImg/museum.jpg" },
+      { question: "I ____ .", choices: ["do puzzles", "play board games", "take photos", "hike"], correctAnswer: 3, questionImage: "img/quizImg/hike.jpg" },
+      { question: "He ____ baseball on Sunday.", choices: ["playing", "play", "plays"], correctAnswer: 2 },
+      { question: "We don't ____ badminton anymore.", choices: ["play", "plays", "playing"], correctAnswer: 0 },
+        
+          { question: "I ____ shopping once a week.", choices: ["go", "going", "goes"], correctAnswer: 0 },
+      { question: "She ____ to school in the morning.", choices: ["going", "go", "goes"], correctAnswer: 2 },
+      { question: "I ____ a book every afternoon.", choices: ["read", "reads", "reading"], correctAnswer: 0 },
+      { question: "They never ____ dancing in the evening.", choices: ["going", "go", "goes"], correctAnswer: 1 },
+      { question: "Sarah ____ pasta.", choices: ["hate", "hates"], correctAnswer: 1 },
+      { question: "Jack doens't ____ the sea.", choices: ["love", "loves"], correctAnswer: 0 },
+      { question: "You ____ like your new phone.", choices: ["doesn't", "don't"], correctAnswer: 1 },
+      { question: "She ____ love pasta.", choices: ["don't", "doesn't"], correctAnswer: 1 },
+      { question: "The dog ____ like cats.", choices: ["don't", "doesn't"], correctAnswer: 1 },
+      { question: "Why ____ you like pizza?", choices: ["don't", "doesn't"], correctAnswer: 0 },
+        
+          { question: "Which is correct? 哪个是对的？", choices: ["jazz", "country", "opera", "rock"], correctAnswer: 2, questionImage: "img/quizImg/opera.jpg" },
+      { question: "Which is correct? 哪个是对的？", choices: ["pop", "orchestra", "concert", "festival"], correctAnswer: 3, questionImage: "img/quizImg/festival.jpg"   },
+      { question: "Which is correct? 哪个是对的？", choices: ["violin", "saxophone", "harmonica", "trumpet"], correctAnswer: 1, questionImage: "img/quizImg/sax.jpg" },
+      { question: "Which is correct? 哪个是对的？", choices: ["flute", "drum", "violin", "keyboard"], correctAnswer: 2, questionImage: "img/quizImg/violin.jpg" },
+      { question: "Which is correct? 哪个是对的？", choices: ["singer", "audience", "soul", "classical music"], correctAnswer: 1, questionImage: "img/quizImg/audience.jpg" },
+      { question: "I like jazz and I love soul, ____ my favourite music is rock.", choices: ["and", "but"], correctAnswer: 1 },
+      { question: "Abdul ____ sailing", choices: ["love", "loves"], correctAnswer: 1 },
+      { question: "Which is correct? 哪个是对的？", choices: ["catch", "throw", "hit", "kick"], correctAnswer: 0, questionImage: "img/quizImg/catch.jpg" },
+      { question: "Which is correct? 哪个是对的？", choices: ["whisper", "talk", "kick", "shout"], correctAnswer: 2, questionImage: "img/quizImg/kick.jpg" },
+      { question: "Which is correct? 哪个是对的？", choices: ["whisper", "talk", "speak", "shout"], correctAnswer: 0, questionImage: "img/quizImg/whisper.jpg" },
+        
+          { question: "Which is correct? 哪个是对的？", choices: ["remember", "understand", "act", "carry"], correctAnswer: 3, questionImage: "img/quizImg/carry.jpg" },
+      { question: "Can not = ____ .", choices: ["cant", "cant'", "can't"], correctAnswer: 2 },
+      { question: "Can you ride a bike?", choices: ["Yes, I can't.", "No, I can't."], correctAnswer: 1 },
+      { question: "Can we climb that mountain?", choices: ["Yes, we can.", "No, we can."], correctAnswer: 0 },
+      { question: "Paul and Jerry don't like the ocean because they ____ swim.", choices: ["can", "can't", "do"], correctAnswer: 1 },
+      { question: "My mother ____ lift that bag because it's too heavy.", choices: ["can", "can't", "do"], correctAnswer: 1 },
+      { question: "I ride my bike to work because I ____ drive.", choices: ["can", "can't"], correctAnswer: 1 },
+      { question: "Can you catch that big fish?", choices: ["Yes, I can't.", "Yes, I can."], correctAnswer: 1 },
+      { question: "A turtle moves ____ .", choices: ["slowley", "slowlee", "slowly"], correctAnswer: 2 },
+      { question: "I can play the piano ____ .", choices: ["badly", "badlie", "badlee"], correctAnswer: 0 },
+        
+      { question: "Ben always listens ____ .", choices: ["careful", "carefully", "carefuller"], correctAnswer: 1 },
+      { question: "I can get to your house ____ .", choices: ["easy", "easily", "easyler"], correctAnswer: 1 },
+      { question: "Sammy always plays his guitar ____ .", choices: ["loud", "loudly"], correctAnswer: 1 },
+      { question: "We ____ go to bed at 11pm.", choices: ["usual", "usually"], correctAnswer: 1 },
+      { question: "A cheetah runs very ____ .", choices: ["fast", "fastly"], correctAnswer: 0 },
+      { question: "I can pass this exam ____ .", choices: ["easy", "easyly", "easily"], correctAnswer: 2 },
+      { question: "Which is correct? 哪个是对的？", choices: ["Elizabeth speaks very Russian well.", "Elizabeth very speaks Russian well.", "Elizabeth speaks Russian very well."], correctAnswer: 2 },
+      { question: "Which is correct? 哪个是对的？", choices: ["My dog can jump quite high.", "My dog quite can jump high.", "My dog can jump high quite."], correctAnswer: 0 },
+      { question: "Sam ____ to have a pizza.", choices: ["wanting", "want", "wants"], correctAnswer: 2 },
+      { question: "Sam ____ like to eat mushrooms.", choices: ["don't", "doesn't"], correctAnswer: 1 },
+        
+          { question: "Would you ____ to go home?", choices: ["likes", "like", "liking"], correctAnswer: 1 },
+      { question: "He ____ want to climb that hill.", choices: ["don't", "doesn't"], correctAnswer: 1 },
+      { question: "I would ____ to be a judge.", choices: ["like", "want"], correctAnswer: 0 },
+      { question: "She would ____ to play tennis tonight.", choices: ["want", "wants"], correctAnswer: 0 },
+      { question: "I ____ to climb that tree.", choices: ["want", "wants"], correctAnswer: 0 },
+      { question: "____ you want to read this book?", choices: ["Does", "Do"], correctAnswer: 1 },
+      { question: "She'd ____ to buy a new phone.", choices: ["likes", "like"], correctAnswer: 1 },
+      { question: "Which is correct? 哪个是对的？", choices: ["biology", "chemistry", "physics", "geography"], correctAnswer: 1, questionImage: "img/quizImg/chemistry.jpg" },
+      { question: "Which is correct? 哪个是对的？", choices: ["biology", "chemistry", "physics", "geography"], correctAnswer: 3, questionImage: "img/quizImg/geography.jpg" },
+      { question: "Which is correct? 哪个是对的？", choices: ["drama", "music", "science", "history"], correctAnswer: 0, questionImage: "img/quizImg/drama.jpg" }
         ]
     },
     {
         groupNumber: 4.1,
-        totalQuestions: 3,
+        totalQuestions: 80,
         questions: [
-            { question: "Question", choices: ["a1", "a2", "a3", "a4"], correctAnswer: 2 },
+            { question: "Hi! I am Noah.", choices: ["Im", "I'm", "Im'"], correctAnswer: 1 },
+            { question: "I ____ Australian.", choices: ["are", "is", "am"], correctAnswer: 2 },
+            { question: "You ____ Chinese.", choices: ["are", "is", "am"], correctAnswer: 0, questionImage: "" },
+            { question: "They ____ Malaysian.", choices: ["are", "is", "am"], correctAnswer: 0, questionImage: "" },
+            { question: "She ____ Canadian.", choices: ["are", "is", "am"], correctAnswer: 1, questionImage: "" },
+            { question: "They ____ Canadian.", choices: ["isn't", "aren't", "amn't"], correctAnswer: 1, questionImage: "" },
+            { question: "She ____ going to school.", choices: ["isn't", "is'nt", "i'snt", "isnt'"], correctAnswer: 0, questionImage: "" },
+            { question: "____ she a teacher?", choices: ["Is", "Are", "Am"], correctAnswer: 0, questionImage: "" },
+            { question: "____ these your dogs?", choices: ["Is", "Are", "Am"], correctAnswer: 1, questionImage: "" },
+            { question: "She ____ lunch at 1:30pm every day.", choices: ["eat", "eats"], correctAnswer: 1, questionImage: "" },
+            
+            { question: "They ____ to the gym at 8am.", choices: ["goes", "go", "going"], correctAnswer: 1, questionImage: "" },
+            { question: "Sarah ____ shopping in the afternoon.", choices: ["goes", "go", "going"], correctAnswer: 0, questionImage: "" },
+            { question: "You ____ lunch at 12pm every day.", choices: ["eat", "eats", "eating"], correctAnswer: 0, questionImage: "" },
+            { question: "We ____ until 9 o'clock every weekend.", choices: ["sleep", "sleeps", "sleeping"], correctAnswer: 0, questionImage: "" },
+            { question: "She ____ vegetables for dinner.", choices: ["eat", "eats", "eating"], correctAnswer: 1, questionImage: "" },
+            { question: "I ____ work outside.", choices: ["is not", "do not", "does not"], correctAnswer: 0, questionImage: "" },
+            { question: "They ____ eat upstairs.", choices: ["do not", "is not", "does not"], correctAnswer: 1, questionImage: "" },
+            { question: "She ____ like pizza.", choices: ["is not", "do not", "does not"], correctAnswer: 2, questionImage: "" },
+            { question: "It ____ like the ball.", choices: ["do not", "does not", "is not"], correctAnswer: 1, questionImage: "" },
+            { question: "____ you live in a house?", choices: ["Do", "Does"], correctAnswer: 0, questionImage: "" },
+            
+            { question: "____ I need a new coat?", choices: ["Do", "Does"], correctAnswer: 0, questionImage: "" },
+            { question: "____ Tom get up at 7am?", choices: ["Do", "Does"], correctAnswer: 1, questionImage: "" },
+            { question: "____ she go swimming?", choices: ["Do", "Does"], correctAnswer: 1, questionImage: "" },
+            { question: "____ they live in Malaysia?", choices: ["Do", "Does"], correctAnswer: 0, questionImage: "" },
+            { question: "She ____ a blue dress.", choices: ["are wear", "is wear", "are wearing", "is wearing"], correctAnswer: 3, questionImage: "" },
+            { question: "He ____ the plate.", choices: ["are wash", "is wash", "are washing", "is washing"], correctAnswer: 3, questionImage: "" },
+            { question: "We ____ our phones.", choices: ["are use", "is use", "are using", "is using"], correctAnswer: 2, questionImage: "" },
+            { question: "I ____ cutting fruit.", choices: ["is", "are", "am"], correctAnswer: 1, questionImage: "" },
+            { question: "He is wearing a tie, but he ____ wearing a hat.", choices: ["is", "isn't", "didn't",], correctAnswer: 1, questionImage: "" },
+            { question: "We ____ walking to school today.", choices: ["isn't", "aren't"], correctAnswer: 1, questionImage: "" },
+            
+            { question: "She ____ eating cake at lunch time.", choices: ["isn't", "aren't"], correctAnswer: 0, questionImage: "" },
+            { question: "I ____ eating this meal.", choices: ["isn't", "aren't"], correctAnswer: 1, questionImage: "" },
+            { question: "Sarah's dog ____ sitting by the fire.", choices: ["isn't", "aren't"], correctAnswer: 0, questionImage: "" },
+            { question: "Which is correct?", choices: ["Were playing soccer.", "We're playing soccer."], correctAnswer: 2, questionImage: "" },
+            { question: "Which is correct?", choices: ["Pete's playing tennis.", "Petes' playing tennis.", "Petes playing tennis.", "#"], correctAnswer: 0, questionImage: "" },
+            { question: "Steven ____ going swimming.", choices: ["Steven has going swimming.", "Steven is going swimming."], correctAnswer: 2, questionImage: "" },
+            { question: "What ____ he doing?", choices: ["are", "is"], correctAnswer: 1, questionImage: "" },
+            { question: "Which is correct?", choices: ["carry", "hold", "clean", "use"], correctAnswer: 0, questionImage: "img/quizImg/carry1.jpg" },
+            { question: "Which is correct?", choices: ["carry", "hold", "clean", "use"], correctAnswer: 1, questionImage: "img/quizImg/hold.jpg" },
+            { question: "Which is correct?", choices: ["carry", "hold", "clean", "use"], correctAnswer: 2, questionImage: "img/quizImg/clean.jpg" },
+            
+            { question: "Which is correct?", choices: ["carry", "hold", "clean", "use"], correctAnswer: 3, questionImage: "img/quizImg/use.jpg" },
+            { question: "Which is correct?", choices: ["tablet", "computer", "headphones", "games console"], correctAnswer: 0, questionImage: "img/quizImg/tablet.jpg" },
+            { question: "Which is correct?", choices: ["tablet", "computer", "headphones", "games console"], correctAnswer: 1, questionImage: "img/quizImg/computer.jpg" },
+            { question: "Which is correct?", choices: ["tablet", "computer", "headphones", "games console"], correctAnswer: 2, questionImage: "img/quizImg/headphones.jpg" },
+            { question: "Which is correct?", choices: ["tablet", "computer", "headphones", "games console"], correctAnswer: 3, questionImage: "img/quizImg/gamesConsole.jpg" },
+            { question: "He ____ taking a bath.", choices: ["is take", "are take", "is taking", "are taking"], correctAnswer: 2, questionImage: "" },
+            { question: "We ____ reading a book.", choices: ["is read", "are read", "is reading", "are reading"], correctAnswer: 3, questionImage: "" },
+            { question: "I ____ to bed.", choices: ["not going", "am going", "is going", "are going"], correctAnswer: 1, questionImage: "" },
+            { question: "She ____ to cats and a dog.", choices: ["has", "have"], correctAnswer: 0, questionImage: "" },
+            { question: "James ____ eating icecream.", choices: ["is", "has", "have", "were"], correctAnswer: 2, questionImage: "" },
+            
+            { question: "I ____ a new laptop.", choices: ["want", "am wanting"], correctAnswer: 0, questionImage: "" },
+            { question: "Simon ____ a new bike.", choices: ["is wanting", "am wanting", "wants"], correctAnswer: 2, questionImage: "" },
+            { question: "Which is the action verb? 哪个是动作动词？", choices: ["want", "know", "love", "play"], correctAnswer: 3, questionImage: "" },
+            { question: "Which is the state verb?哪个是状态动词？ ", choices: ["love", "sing", "listen", "eat"], correctAnswer: 0, questionImage: "" },
+            { question: "Which is correct?", choices: ["I am remembering it is your birthday.", "I remember it is your birthday."], correctAnswer: 1, questionImage: "" },
+            { question: "Which is correct?", choices: ["Dan wants a drink.", "Dan is wanting a drink."], correctAnswer: 0, questionImage: "" },
+            { question: "Which is correct?", choices: ["My dad hates pizza.", "My dad is hating pizza."], correctAnswer: 0, questionImage: "" },
+            { question: "Which is correct?", choices: ["He is owning a car.", "He owns a car."], correctAnswer: 1, questionImage: "" },
+            { question: "Sam ____ at the shop near her appartment.", choices: ["live", "lives", "life"], correctAnswer: 1, questionImage: "" },
+            { question: "Kate ____ three children.", choices: ["have", "has"], correctAnswer: 1, questionImage: "" },
+            
+            { question: "Which is correct?", choices: ["calm", "relaxed", "happy", "confident"], correctAnswer: 1, questionImage: "img/quizImg/relaxed.jpg" },
+            { question: "Which is correct?", choices: ["proud", "excited", "surprised", "pleased"], correctAnswer: 2, questionImage: "img/quizImg/surprised.jpg" },
+            { question: "Which is correct?", choices: ["cheerful", "amused", "irritated", "angry"], correctAnswer: 3, questionImage: "img/quizImg/angry.jpg" },
+            { question: "Which is correct?", choices: ["worried", "lonely", "scared", "terrified"], correctAnswer: 0, questionImage: "img/quizImg/worried.jpg" },
+            { question: "Which is correct?", choices: ["nervous", "anxious", "distracted", "confused"], correctAnswer: 3, questionImage: "img/quizImg/confused.jpg" },
+            { question: "Which is correct?", choices: ["tired", "bored", "curious", "grateful"], correctAnswer: 1, questionImage: "img/quizImg/bored.jpg" },
+            { question: "James and I normally ____ tennis on the weekend, but today we are ____ .", choices: ["play + swim", "playing + swimming", "play + swimming", "playing + swim"], correctAnswer: 2, questionImage: "" },
+            { question: "Today, I ____ soup for lunch.", choices: ["am have", "have", "am having", "had"], correctAnswer: 2, questionImage: "" },
+            { question: "I usually ____ a sandwich for lunch.", choices: ["have", "having", "had"], correctAnswer: 0, questionImage: "img/quizImg/" },
+            { question: "Today you ____ water, but you often ____ coffee for lunch.", choices: ["drink + have", "are drink + having", "are drinking + have", "drank + has"], correctAnswer: 2, questionImage: "" },
+            
+            { question: "Abe normally ____, but tonight he is ____ to music", choices: ["reading + listen", "read + listen", "reading + listening", "reads + listening"], correctAnswer: 3, questionImage: "" },
+            { question: "Jim is often listening to the radio in the evening, but tonight ____ .", choices: ["he is go to a party", "he is going to a party"], correctAnswer: 1, questionImage: "" },
+            { question: "Mr Jason is teaching English this week, but he normally ____", choices: ["teaches geography", "was teaching geography."], correctAnswer: 0, questionImage: "" },
+            { question: "Which is correct?", choices: ["foot", "toes", "ankle", "heel"], correctAnswer: 3, questionImage: "img/quizImg/heel.jpg" },
+            { question: "My brother isn't ____ very well this morning.", choices: ["feel", "feeling", "felt"], correctAnswer: 1, questionImage: "" },
+            { question: "Luca and Ben ____ feeling well today.", choices: ["isn't", "doesn't", "aren't"], correctAnswer: 2, questionImage: "" },
+            { question: "George ____ sick, so he's staying in bed today.", choices: ["are", "is", "were"], correctAnswer: 1, questionImage: "" },
+            { question: "I ____ sick, so I'm staying in bed today.", choices: ["are", "is", "am"], correctAnswer: 2, questionImage: "" },
+            { question: "Cathy ____ not feeling well today.", choices: ["isn't", "not", "aren't"], correctAnswer: 0, questionImage: "" },
+            { question: "Which is correct?", choices: ["boiling", "freezing", "puddle"], correctAnswer: 0, questionImage: "img/quizImg/boiling.jpg" }
+            
         ]
     },
     {
@@ -414,6 +514,7 @@
         totalQuestions: 3,
         questions: [
             { question: "Question", choices: ["a1", "a2", "a3", "a4"], correctAnswer: 2 },
+            { question: "#", choices: ["#", "#", "#", "#"], correctAnswer: 2, questionImage: "" },
         ]
     },
     {
@@ -425,48 +526,6 @@
     },
     {
         groupNumber: 4.4,
-        totalQuestions: 3,
-        questions: [
-            { question: "Question", choices: ["a1", "a2", "a3", "a4"], correctAnswer: 2 },
-        ]
-    },
-    {
-        groupNumber: 4.5,
-        totalQuestions: 3,
-        questions: [
-            { question: "Question", choices: ["a1", "a2", "a3", "a4"], correctAnswer: 2 },
-        ]
-    },
-    {
-        groupNumber: 4.6,
-        totalQuestions: 3,
-        questions: [
-            { question: "Question", choices: ["a1", "a2", "a3", "a4"], correctAnswer: 2 },
-        ]
-    },
-    {
-        groupNumber: 4.7,
-        totalQuestions: 3,
-        questions: [
-            { question: "Question", choices: ["a1", "a2", "a3", "a4"], correctAnswer: 2 },
-        ]
-    },
-    {
-        groupNumber: 4.8,
-        totalQuestions: 3,
-        questions: [
-            { question: "Question", choices: ["a1", "a2", "a3", "a4"], correctAnswer: 2 },
-        ]
-    },
-    {
-        groupNumber: 4.9,
-        totalQuestions: 3,
-        questions: [
-            { question: "Question", choices: ["a1", "a2", "a3", "a4"], correctAnswer: 2 },
-        ]
-    },
-    {
-        groupNumber: 5.0,
         totalQuestions: 3,
         questions: [
             { question: "Question", choices: ["a1", "a2", "a3", "a4"], correctAnswer: 2 },
@@ -501,48 +560,6 @@
         ]
     },
     {
-        groupNumber: 5.5,
-        totalQuestions: 3,
-        questions: [
-            { question: "Question", choices: ["a1", "a2", "a3", "a4"], correctAnswer: 2 },
-        ]
-    },
-    {
-        groupNumber: 5.6,
-        totalQuestions: 3,
-        questions: [
-            { question: "Question", choices: ["a1", "a2", "a3", "a4"], correctAnswer: 2 },
-        ]
-    },
-    {
-        groupNumber: 5.7,
-        totalQuestions: 3,
-        questions: [
-            { question: "Question", choices: ["a1", "a2", "a3", "a4"], correctAnswer: 2 },
-        ]
-    },
-    {
-        groupNumber: 5.8,
-        totalQuestions: 3,
-        questions: [
-            { question: "Question", choices: ["a1", "a2", "a3", "a4"], correctAnswer: 2 },
-        ]
-    },
-    {
-        groupNumber: 5.9,
-        totalQuestions: 3,
-        questions: [
-            { question: "Question", choices: ["a1", "a2", "a3", "a4"], correctAnswer: 2 },
-        ]
-    },
-    {
-        groupNumber: 6.0,
-        totalQuestions: 3,
-        questions: [
-            { question: "Question", choices: ["a1", "a2", "a3", "a4"], correctAnswer: 2 },
-        ]
-    },
-    {
         groupNumber: 6.1,
         totalQuestions: 3,
         questions: [
@@ -571,40 +588,61 @@
         ]
     },
     {
-        groupNumber: 6.5,
+        groupNumber: 7.1,
         totalQuestions: 3,
         questions: [
             { question: "Question", choices: ["a1", "a2", "a3", "a4"], correctAnswer: 2 },
         ]
     },
     {
-        groupNumber: 6.6,
+        groupNumber: 7.2,
         totalQuestions: 3,
         questions: [
             { question: "Question", choices: ["a1", "a2", "a3", "a4"], correctAnswer: 2 },
         ]
     },
     {
-        groupNumber: 6.7,
+        groupNumber: 7.3,
         totalQuestions: 3,
         questions: [
             { question: "Question", choices: ["a1", "a2", "a3", "a4"], correctAnswer: 2 },
         ]
     },
     {
-        groupNumber: 6.8,
+        groupNumber: 7.4,
         totalQuestions: 3,
         questions: [
             { question: "Question", choices: ["a1", "a2", "a3", "a4"], correctAnswer: 2 },
         ]
     },
     {
-        groupNumber: 6.9,
+        groupNumber: 8.1,
         totalQuestions: 3,
         questions: [
             { question: "Question", choices: ["a1", "a2", "a3", "a4"], correctAnswer: 2 },
         ]
     },
+    {
+        groupNumber: 8.2,
+        totalQuestions: 3,
+        questions: [
+            { question: "Question", choices: ["a1", "a2", "a3", "a4"], correctAnswer: 2 },
+        ]
+    },
+    {
+        groupNumber: 8.3,
+        totalQuestions: 3,
+        questions: [
+            { question: "Question", choices: ["a1", "a2", "a3", "a4"], correctAnswer: 2 },
+        ]
+    },
+    {
+        groupNumber: 8.4,
+        totalQuestions: 3,
+        questions: [
+            { question: "Question", choices: ["a1", "a2", "a3", "a4"], correctAnswer: 2 },
+        ]
+    }
 ];
         
         
@@ -1009,33 +1047,24 @@ function getGuidance(percentage) {
   doc.text(`Group ${groupNumber} - Correct Answers: ${stats.correct}, Total Questions: ${stats.total}, Percentage: ${percentage}% (${guidanceText})`, 10, yPos);
   yPos += 7;
       
-      if (['0.4', '0.5', '0.6'].includes(groupNumber)) {
-        levelScoreTracker['Level 1'].correct += stats.correct;
-        levelScoreTracker['Level 1'].total += stats.total;
-    } else if (['0.7', '0.8', '0.9'].includes(groupNumber)) {
-        levelScoreTracker['Level 2'].correct += stats.correct;
-        levelScoreTracker['Level 2'].total += stats.total;
-    }else if (['1.0', '1.1', '1.2', '1.3', '1.4'].includes(groupNumber)) {
+      if (['3.1', '3.2', '3.3', '3.4'].includes(groupNumber)) {
         levelScoreTracker['Level 3'].correct += stats.correct;
         levelScoreTracker['Level 3'].total += stats.total;
-    }else if (['1.5', '1.6', '1.7', '1.8', '1.9'].includes(groupNumber)) {
+    } else if (['4.1', '4.2', '4.3', '4.4'].includes(groupNumber)) {
         levelScoreTracker['Level 4'].correct += stats.correct;
         levelScoreTracker['Level 4'].total += stats.total;
-    }else if (['2.0', '2.1', '2.2', '2.3', '2.4', '2.5', '2.6', '2.7', '2.8', '2.9'].includes(groupNumber)) {
+    }else if (['5.1', '5.2', '5.3', '5.4'].includes(groupNumber)) {
         levelScoreTracker['Level 5'].correct += stats.correct;
         levelScoreTracker['Level 5'].total += stats.total;
-    }else if (['3.0', '3.1', '3.2','3.3', '3.4', '3.5', '3.6', '3.7', '3.8', '3.9'].includes(groupNumber)) {
+    }else if (['6.1', '6.2', '6.3', '6.4'].includes(groupNumber)) {
         levelScoreTracker['Level 6'].correct += stats.correct;
         levelScoreTracker['Level 6'].total += stats.total;
-    }else if (['4.0', '4.1', '4.2', '4.3', '4.4', '4.5', '4.6', '4.7', '4.8', '4.9'].includes(groupNumber)) {
+    }else if (['7.1', '7.2', '7.3', '7.4'].includes(groupNumber)) {
         levelScoreTracker['Level 7'].correct += stats.correct;
         levelScoreTracker['Level 7'].total += stats.total;
-    }else if (['5.0', '5.1', '5.2', '5.3', '5.4', '5.5', '5.6', '5.7', '5.8', '5.9'].includes(groupNumber)) {
+    }else if (['8.1', '8.2', '8.3','8.4'].includes(groupNumber)) {
         levelScoreTracker['Level 8'].correct += stats.correct;
         levelScoreTracker['Level 8'].total += stats.total;
-    }else if (['6.0', '6.1', '6.2', '6.3', '6.4', '6.5', '6.6', '6.7', '6.8', '6.9'].includes(groupNumber)) {
-        levelScoreTracker['Level Advanced'].correct += stats.correct;
-        levelScoreTracker['Level Advanced'].total += stats.total;
     }
     // Add more 'else if' conditions for other levels
   }
