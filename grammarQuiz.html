@@ -1,0 +1,1095 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+    <title>Quiz</title>
+    <style>
+        body {
+            font-family: 'Comic Sans MS', 'Arial', sans-serif; 
+            background-color: #f0f4f8;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: #333;
+        }
+
+        .quiz-container {
+            max-width: 500px;
+            padding: 30px 40px;  
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            font-size: 1.6em;
+            margin-top: 0;
+            margin-bottom: 25px;
+            font-weight: bold;
+        }
+
+        #question {
+            font-size: 1.5em;
+            margin-bottom: 20px;
+            opacity: 1;
+        }
+        
+         #question-image img {
+            max-width: 100%;  /* make sure it's not larger than its container */
+            height: auto;  /* maintain aspect ratio */
+            display: block;  /* removes any unwanted spacing at the bottom */
+            margin: 20px auto;  /* center it horizontally, with some margin at the top and bottom */
+            border: 2px solid #007BFF;  /* a border, optional */
+            border-radius: 5px;  /* rounded corners, optional */
+        }
+
+        .choice-btn {
+            font-size: 1.2em;
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 10px;
+            background-color: #007BFF;
+            color: #ffffff;
+            border: none;
+            border-radius: 5px;
+            box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .choice-btn:hover {
+            background-color: #0056b3;
+            transform: translateY(-3px);
+            box-shadow: 0px 6px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        #feedback {
+            margin-top: 10px;
+            font-weight: bold;
+            opacity: 0;
+        }
+
+        #timer {
+            font-size: 1.2em;
+            margin-top: 15px;
+            font-weight: bold;
+            color: #007BFF;
+        }
+
+        .progress-bar {
+    background-color: #e0e0e0;
+    height: 20px;
+    width: 90%;
+    margin: 20px auto;
+    border-radius: 5px;
+    position: relative;  /* Add this line */
+}
+
+        .progress-bar-inner {
+            height: 100%;
+            width: 0;
+            background-color: #007BFF;
+            transition: width 0.5s ease-out;
+        }
+
+        .group-number-display {
+            position: absolute;
+            top: 60%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-weight: bold;
+        }
+
+        #end-card {
+            opacity: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="quiz-container">
+        <h2 id="question"></h2>
+        <div id="question-image"></div>
+        <div id="choices"></div>
+        <div id="feedback"></div>
+        <div id="score">Score: 0</div>
+        <div id="timer">Time left: 5:00</div>
+        <div class="progress-bar">
+            <div class="progress-bar-inner"></div>
+             <div id="group-number" class="group-number-display">Group: 1</div>
+        </div>
+    </div>
+    <div id="end-card" class="quiz-container" style="display: none;">
+        <h2>Quiz Ended</h2>
+        <p>Correct Answers: <span id="final-score"></span></p>
+        <p>Advised Level: <span id="reached-group"></span></p>
+        <button id="download-pdf">Download PDF</button>
+    </div>
+    <script>
+        const groups = [
+    {
+        groupNumber: 3.1,
+        totalQuestions: 60,
+        questions: [
+          
+      { question: "", choices: ["The United Kingdom", "The United States", "Canada", "Germany"], correctAnswer: 0, questionImage: "img/quizImg/ukFlag.jpg" },
+      { question: "", choices: ["The United Kingdom", "The United States", "Canada", "Germany"], correctAnswer: 2, questionImage: "img/quizImg/canadaFlag.jpg" },
+      { question: "I ____ 15 years old.", choices: ["am", "are", "is"], correctAnswer: 0 },
+      { question: "You ____ 12 years old.", choices: ["am", "are", "is"], correctAnswer: 1 },
+      { question: "He ____ 9 years old.", choices: ["am", "are", "is"], correctAnswer: 2 },
+      { question: "We ____ 14 years old.", choices: ["am", "are", "is"], correctAnswer: 1 },
+      { question: "They ____ 19 years old.", choices: ["am", "are", "is"], correctAnswer: 1 },
+     
+      { question: "4", choices: ["for", "fore", "four"], correctAnswer: 2 },
+      { question: "59", choices: ["fiftee nine", "fifty nine", "fifteen nine"], correctAnswer: 1 },
+      { question: "19", choices: ["ninety", "nineteen"], correctAnswer: 1 },
+      { question: "", choices: ["I am Spain", "I am from Spain"], correctAnswer: 1, questionImage: "img/quizImg/spanishFlag.jpg" },
+      { question: "", choices: ["We are Japanese", "We are Japan"], correctAnswer: 0, questionImage: "img/quizImg/japanesePeople.jpg" },
+      { question: "I ____ Australian.", choices: ["am", "are", "am from", "are from"], correctAnswer: 0,},
+      { question: "You ____ Italy.", choices: ["am", "are", "am from", "are from"], correctAnswer: 3,},
+      { question: "Bobby is ____ dog.", choices: ["my", "I",], correctAnswer: 0, questionImage: "img/quizImg/myDog.jpg" },
+      { question: "____ sister is called Sarah.", choices: ["He", "Her",], correctAnswer: 1,},
+      { question: "____ turtle is 50 years old.", choices: ["He", "His",], correctAnswer: 1,},
+        
+      { question: "____ Lion is from Kenya", choices: ["Our", "We",], correctAnswer: 0,},
+      { question: "____ pig lives on a farm.", choices: ["She", "Her",], correctAnswer: 1,},
+      { question: "They are ____ sheep.", choices: ["we", "our",], correctAnswer: 1, questionImage: "img/quizImg/ourSheep.jpg"},
+      { question: "That ____ her cat.", choices: ["is", "are",], correctAnswer: 0,},
+      { question: "", choices: ["That is her grandparent's house.", "That is her grandparents' house.",], correctAnswer: 1,},
+      { question: "James is ____ aunt.", choices: ["Sarah", "Sarah's",], correctAnswer: 1,},
+      { question: "", choices: ["Sunglasses", "Glasses"], correctAnswer: 0, questionImage: "img/quizImg/sunglasses.jpg"},
+      { question: "____ are my books.", choices: ["That", "Those",], correctAnswer: 1,},
+      { question: "____ is Simon's phone.", choices: ["Those", "That",], correctAnswer: 1,},
+      { question: "", choices: ["These are our keys.", "That are our keys.",], correctAnswer: 0, questionImage: "img/quizImg/keys.jpg"},
+        
+      { question: "", choices: ["Dictionarys", "Dictionarees", "Dictionaries"], correctAnswer: 2, questionImage: "img/quizImg/dictionaries.jpg"},
+      { question: "That ____ her book.", choices: ["are", "is",], correctAnswer: 1,},
+      { question: "", choices: ["boxs", "boxes",], correctAnswer: 1, questionImage: "img/quizImg/boxes.jpg"},
+      { question: "", choices: ["toothbrushs", "toothbrushes",], correctAnswer: 1, questionImage: "img/quizImg/toothbrushes.jpg"},
+      { question: "____ pencils are hers.", choices: ["This", "These",], correctAnswer: 1,},
+      { question: "", choices: ["waiter", "electrician", "pilot", "scientist"], correctAnswer: 3, questionImage: "img/quizImg/scientist.jpg"},
+      { question: "", choices: ["vet", "firefighter", "doctor", "driver"], correctAnswer: 1, questionImage: "img/quizImg/firefighter.jpg"},
+      { question: "She ____ farmer.", choices: ["are an", "am an", "is a", "are"], correctAnswer: 2,},
+      { question: "We ____ teachers.", choices: ["are an", "am an", "is a", "are"], correctAnswer: 3,},
+      { question: "They ____ drivers.", choices: ["are", "is",], correctAnswer: 0,},
+        
+      { question: "He ____ a vet.", choices: ["are", "is",], correctAnswer: 1,},
+      { question: "We ____ sales assistants.", choices: ["am", "are",], correctAnswer: 1,},
+      { question: "", choices: ["farm", "office", "restaurant", "construction site"], correctAnswer: 2, questionImage: "img/quizImg/restaurant.jpg"},
+      { question: "A nurse is in a ____ .", choices: ["restaurant", "farm", "hospital"], correctAnswer: 2,},
+      { question: "", choices: ["plants", "food", "people"], correctAnswer: 1, questionImage: "img/quizImg/food.jpg"},
+      { question: "I ____ a vet.", choices: ["am", "is"], correctAnswer: 0,},
+      { question: "She ____ a businesswoman.", choices: ["is", "are"], correctAnswer: 0,},
+      { question: "You ____ a nurse.", choices: ["is", "are"], correctAnswer: 1,},
+      { question: "We work ____ a farm.", choices: ["in", "on"], correctAnswer: 1,},
+      { question: "My sister works ____ a cafe.", choices: ["on", "in"], correctAnswer: 1,},
+        
+      { question: "Dan works ____ a hospital.", choices: ["on", "in"], correctAnswer: 1,},
+      { question: "My dad works ____ a construction site.", choices: ["on", "in"], correctAnswer: 0,},
+      { question: "Tom is a chef, and he works with _____ .", choices: ["animals", "food", "children"], correctAnswer: 1,},
+      { question: "", choices: ["noon", "midnight"], correctAnswer: 0, questionImage: "img/quizImg/noon.jpg"},
+      { question: "", choices: ["noon", "midnight"], correctAnswer: 1, questionImage: "img/quizImg/midnight.jpg"},
+      { question: "", choices: ["3am", "3pm"], correctAnswer: 0, questionImage: "img/quizImg/3am.jpg"},
+      { question: "", choices: ["3am", "3pm"], correctAnswer: 1, questionImage: "img/quizImg/3pm.jpg"},
+      { question: "", choices: ["It's quarter to six.", "It's quarter to seven."], correctAnswer: 1, questionImage: "img/quizImg/quartertoseven.jpg"},
+      { question: "", choices: ["Dawn", "Afternoon", "Evening"], correctAnswer: 1, questionImage: "img/quizImg/afternoon.jpg"},
+      { question: "", choices: ["Dawn", "Afternoon", "Evening"], correctAnswer: 2, questionImage: "img/quizImg/evening.jpg"}
+        ]
+    },
+    {
+        groupNumber: 3.2,
+        totalQuestions: 60,
+        questions: [
+             { question: "I ____ lunch at 2pm every day.", choices: ["eat", "eats"], correctAnswer: 0 },
+      { question: "You ____ lunch at 2pm every day.", choices: ["eat", "eats"], correctAnswer: 0 },
+      { question: "He ____ lunch at 2pm every day.", choices: ["eat", "eats"], correctAnswer: 1 },
+      { question: "It ____ lunch at 2pm every day.", choices: ["eat", "eats"], correctAnswer: 1 },
+      { question: "I ____ school at 10am.", choices: ["start", "starts"], correctAnswer: 0 },
+      { question: "Ellen ____ up at 5 o'clock.", choices: ["get", "gets"], correctAnswer: 1 },
+      { question: "I ____ a shower in the evening.", choices: ["take", "takes"], correctAnswer: 0 },
+      { question: "My brother ____ with animals.", choices: ["work", "works"], correctAnswer: 1 },
+      { question: "Tom ____ up at 7:30am.", choices: ["get", "gets"], correctAnswer: 1 },
+      { question: "Shona ____ TV in the evening.", choices: ["watch", "watches"], correctAnswer: 1 },
+        
+      { question: "We ____ to bed at midnight.", choices: ["go", "goes"], correctAnswer: 0 },
+      { question: "I ____ school at noon.", choices: ["start", "starts"], correctAnswer: 0 },
+      { question: "She ____ an hour for lunch.", choices: ["take", "takes"], correctAnswer: 1 },
+      { question: "He ____ his car every weekend.", choices: ["wash", "washes"], correctAnswer: 1 },
+      { question: "She ____ for eight hours.", choices: ["sleep", "sleeps"], correctAnswer: 1 },
+      { question: "I ____ to work.", choices: ["drive", "drives"], correctAnswer: 0 },
+      { question: "I go to school from Monday ____ Wednesday.", choices: ["at", "on", "to"], correctAnswer: 2 },
+      { question: "I ____ a bath on Wednesdays.", choices: ["take", "takes"], correctAnswer: 0 },
+      { question: "I watch TV ____ Sundays.", choices: ["at", "on"], correctAnswer: 1 },
+      { question: "Colin sleeps ____ 11pm to 6am.", choices: ["at", "from", "on"], correctAnswer: 1 },
+        
+      { question: "Jack starts school at 8am ____ Mondays.", choices: ["at", "on"], correctAnswer: 1 },
+      { question: "Which is correct?", choices: ["I work from Monday to Thursday.", "I work of Monday to Thursday."], correctAnswer: 0 },
+      { question: "Which is correct?", choices: ["You read the newspaper in Sundays.", "You read the newspaper on Sundays."], correctAnswer: 1 },
+      { question: "He ____ in school.", choices: ["is not", "are not"], correctAnswer: 0 },
+      { question: "You ____ at work.", choices: ["is not", "are not"], correctAnswer: 1 },
+      { question: "Which is correct?", choices: ["It am not 10 o'clock in the morning.", "It is not 10 o'clock in the morning."], correctAnswer: 1 },
+      { question: "which is correct?", choices: ["My brother aren't married.", "My brother isn't married."], correctAnswer: 1 },
+      { question: "He ____ at school.", choices: ["am not", "aren't", "isn't"], correctAnswer: 2 },
+      { question: "I ____ work outside.", choices: ["do not", "does not"], correctAnswer: 0 },
+      { question: "He _____ work outside.", choices: ["do not", "does not"], correctAnswer: 1 },
+        
+      { question: "She ____ speak English.", choices: ["don't", "doesn't"], correctAnswer: 1 },
+      { question: "____ you American?", choices: ["Am", "Are", "Is"], correctAnswer: 1 },
+      { question: "____ she Australian?", choices: ["Am", "Are", "Is"], correctAnswer: 2 },
+      { question: "____ it Chinese?", choices: ["Am", "Are", "Is"], correctAnswer: 2 },
+      { question: "____ you work in a school?", choices: ["Does", "Do"], correctAnswer: 1 },
+      { question: "____ they live in Paris?", choices: ["Does", "Do?"], correctAnswer: 1 },
+      { question: "_____ they eat breakfast?", choices: ["Do", "Does"], correctAnswer: 0 },
+      { question: "_____ she like coffee?", choices: ["Is", "Do", "Does"], correctAnswer: 2 },
+      { question: "Does he live here?", choices: ["Yes, he do.", "Yes, he does."], correctAnswer: 1 },
+      { question: "Do they live in Sweden?", choices: ["Yes, they do.", "Yes, they does."], correctAnswer: 0 },
+        
+      { question: "Do you eat breakfast?", choices: ["No, I'm not.", "No, I don't", "No, I aren't.", "No, I isn't."], correctAnswer: 1 },
+      { question: "Is that your dog?", choices: ["No, it doesn't.", "No, it not.", "No, it isn't.", "No, it aren't."], correctAnswer: 2 },
+      { question: "What ____ their names?", choices: ["is", "are", "am"], correctAnswer: 1 },
+      { question: "What ____ the time?", choices: ["is", "are", "am"], correctAnswer: 0 },
+      { question: "What ____ they?", choices: ["is", "are", "am"], correctAnswer: 1 },
+      { question: "____ is it cold in here?", choices: ["Which", "Why", "Who", "What"], correctAnswer: 1 },
+      { question: "", choices: ["Factory", "Pharmacy", "Castle", "Church"], correctAnswer: 0, questionImage: "img/quizImg/factory.jpg" },
+      { question: "", choices: ["Factory", "Pharmacy", "Castle", "Church"], correctAnswer: 2, questionImage: "img/quizImg/castle.jpg" },
+      { question: "There ____ a hospital in my town.", choices: ["is", "are"], correctAnswer: 0 },
+      { question: "There ____ three restaurants in my town.", choices: ["is", "are"], correctAnswer: 1 },
+        
+      { question: "There ____ stores.", choices: ["aren't any", "aren't no"], correctAnswer: 0 },
+      { question: "There ____ theatres.", choices: ["are any", "are no"], correctAnswer: 1 },
+      { question: "There is ____ good cafe in the park.", choices: ["a", "an", "the"], correctAnswer: 0 },
+      { question: "It is ____ dog's favourite toy.", choices: ["a", "an", "the"], correctAnswer: 2 },
+      { question: "See you at ____ bus station.", choices: ["a", "an", "the"], correctAnswer: 2 },
+      { question: "Is there ____ swimming pool near here?", choices: ["a", "an", "any"], correctAnswer: 0 },
+      { question: "Are there ____ people in that shop?", choices: ["a", "an", "any"], correctAnswer: 2 },
+      { question: "", choices: ["opposite", "between", "block"], correctAnswer: 1, questionImage: "img/quizImg/between.jpg" },
+      { question: "The cinema is ____ of the intersection.", choices: ["opposite", "behind", "between", "on the corner"], correctAnswer: 0, questionImage: "img/quizImg/cinema.jpg" },
+      { question: "There's a hotel, ____ there isn't a shop.", choices: ["and", "but"], correctAnswer: 1 }
+        ]
+    },
+    {
+        groupNumber: 3.3,
+        totalQuestions: 60,
+        questions: [
+            { question: "The house is ____ .", choices: ["beautiful", "horrible", "busy", "old"], correctAnswer: 0, questionImage: "img/quizImg/beautiful.jpg" },
+      { question: "The house is ____ .", choices: ["beautiful", "horrible", "busy", "old"], correctAnswer: 2, questionImage: "img/quizImg/busy.jpg" },
+      { question: "The house is ____ .", choices: ["beautiful", "horrible", "busy", "old"], correctAnswer: 3, questionImage: "img/quizImg/old.jpg" },
+      { question: "", choices: ["countryside", "mountain", "lake", "river"], correctAnswer: 1, questionImage: "img/quizImg/mountain.jpg" },
+      { question: "", choices: ["beach", "sea", "river", "hill"], correctAnswer: 3, questionImage: "img/quizImg/hill.jpg" },
+      { question: "There are ____ people.", choices: ["some", "a few", "lots of"], correctAnswer: 2, questionImage: "img/quizImg/people.jpg" },
+      { question: "There are ____ trees.", choices: ["some", "many", "lots of"], correctAnswer: 0, questionImage: "img/quizImg/trees.jpg" },
+      { question: "Small = Big.   Horrible = ____ .", choices: ["easy", "beautiful", "large", "new"], correctAnswer: 1 },
+      { question: "It is noisy in town ____ there are lots of cars.", choices: ["so", "or", "because"], correctAnswer: 2 },
+      { question: "The nurse is busy ____ there are lots of patients.", choices: ["because", "so", "or"], correctAnswer: 0 },
+        
+          { question: "", choices: ["living room", "bathroom", "attic", "basement"], correctAnswer: 2, questionImage: "img/quizImg/attic.jpg" },
+      { question: "", choices: ["stove", "wardrobe", "couch", "garage"], correctAnswer: 0, questionImage: "img/quizImg/stove.jpg" },
+      { question: "We ____ a cat.", choices: ["have", "has"], correctAnswer: 0 },
+      { question: "She ____ a dog.", choices: ["have", "has"], correctAnswer: 1 },
+      { question: "They ____ a garage.", choices: ["have", "has"], correctAnswer: 0 },
+      { question: "He ____ a fridge.", choices: ["have", "has"], correctAnswer: 1 },
+      { question: "I ____ a new car.", choices: ["have", "has"], correctAnswer: 0 },
+      { question: "The village ____ have any stores.", choices: ["doesn't", "don't"], correctAnswer: 0 },
+      { question: "You ____ have any sisters.", choices: ["doesn't", "don't"], correctAnswer: 1 },
+      { question: "My city ____ have a castle.", choices: ["doesn't", "don't"], correctAnswer: 0 },
+        
+          { question: "", choices: ["microwave", "dishwasher", "kettle", "toaster"], correctAnswer: 3, questionImage: "img/quizImg/toaster.jpg" },
+      { question: "", choices: ["microwave", "dishwasher", "kettle", "toaster"], correctAnswer: 0, questionImage: "img/quizImg/microwave.jpg" },
+      { question: "", choices: ["meat", "seafood", "fruit", "vegetables"], correctAnswer: 1, questionImage: "img/quizImg/seafood.jpg" },
+      { question: "This is a ____ of milk.", choices: ["carton", "jar", "box", "tube"], correctAnswer: 0 },
+      { question: "This is a ____ of toothpaste.", choices: ["carton", "jar", "box", "tube"], correctAnswer: 3, questionImage: "img/quizImg/toothpaste.jpg" },
+      { question: "How ____ cakes are there?", choices: ["many", "much"], correctAnswer: 0 },
+      { question: "How ____ sugar is there?", choices: ["many", "much"], correctAnswer: 1 },
+      { question: "How ____ oranges are there?", choices: ["many", "much"], correctAnswer: 0 },
+      { question: "How ____ chocolate is there?", choices: ["many", "much"], correctAnswer: 1 },
+      { question: "There is ____ sugar.", choices: ["too many", "too much"], correctAnswer: 1 },
+        
+          { question: "They have ____ apples.", choices: ["too many", "too much"], correctAnswer: 0 },
+      { question: "Tom has too many ____ .", choices: ["egg", "eggs"], correctAnswer: 1 },
+      { question: "There is ____ flour.", choices: ["too many", "too much"], correctAnswer: 1 },
+      { question: "There ____ too much sugar in the cake.", choices: ["are", "is"], correctAnswer: 1 },
+      { question: "There ____ too much salt.", choices: ["is", "are"], correctAnswer: 0 },
+      { question: "There ____ enough sugar.", choices: ["aren't", "isn't", "weren't"], correctAnswer: 1 },
+      { question: "", choices: ["shirt", "blouse", "dress", "skirt"], correctAnswer: 3, questionImage: "img/quizImg/skirt.jpg" },
+      { question: "", choices: ["jeans", "jacket", "coat", "raincoat"], correctAnswer: 0, questionImage: "img/quizImg/jeans.jpg" },
+      { question: "", choices: ["socks", "boots", "shoes", "sneakers"], correctAnswer: 3, questionImage: "img/quizImg/sneakers.jpg" },
+      { question: "", choices: ["smart", "casual", "suit", "uniform"], correctAnswer: 2, questionImage: "img/quizImg/suit.jpg" },
+        
+          { question: "Sarah ____ a red hat.", choices: ["own", "owns"], correctAnswer: 1 },
+      { question: "____ a new shirt!", choices: ["Choose", "Chooses"], correctAnswer: 0 },
+      { question: "Let's ____ new clothes.", choices: ["buy", "buys"], correctAnswer: 0 },
+      { question: "'Does this sweater fit? 'No, it is ____ .' ", choices: ["not big enough", "big enough", "too big"], correctAnswer: 2, questionImage: "img/quizImg/big.jpg" },
+      { question: "This is a ____ hat.", choices: ["lovely green", "green lovely"], correctAnswer: 0 },
+      { question: "We have a ____ car.", choices: ["old horrible", "horrible old"], correctAnswer: 1 },
+      { question: "James has a ____ cat.", choices: ["beautiful old", "old beautiful"], correctAnswer: 0 },
+      { question: "He is a ____ actor.", choices: ["brilliant young", "young brilliant"], correctAnswer: 0 },
+      { question: "This is a ____ book.", choices: ["new great", "great new"], correctAnswer: 1 },
+      { question: "This shoe is made of ____ .", choices: ["metal", "wool", "leather", "plastic"], correctAnswer: 2, questionImage: "img/quizImg/shoe.jpg" },
+        
+          { question: "That duck is made of ____ .", choices: ["plastic", "wood", "glass", "paper"], correctAnswer: 0, questionImage: "img/quizImg/duck.jpg" },
+      { question: "____ are busy streets.", choices: ["This", "These"], correctAnswer: 1 },
+      { question: "", choices: ["The town is busy.", "The town is a busy."], correctAnswer: 0 },
+      { question: "Young = Old.   Difficult = ____ .", choices: ["slow", "easy", "new", "bad"], correctAnswer: 1 },
+      { question: "My village is quiet ____ there are only a few families.", choices: ["but", "because", "also"], correctAnswer: 1 },
+      { question: "Simon lives on a farm ____ he is a farmer.", choices: ["but", "because", "also"], correctAnswer: 1 },
+      { question: "She ____ a small child.", choices: ["have", "has"], correctAnswer: 1 },
+      { question: "They put their food in the ____ .", choices: ["dishwasher", "kettle", "microwave", "plate"], correctAnswer: 2 },
+      { question: "There is ____ rice.", choices: ["100", "lots", "some"], correctAnswer: 2 },
+      { question: "____ potatoes are there?", choices: ["How many", "How much"], correctAnswer: 0 }
+        ]
+    },
+    {
+        groupNumber: 3.4,
+        totalQuestions: 60,
+        questions: [
+            { question: "She ____ surfing on the weekend.", choices: ["go", "goes"], correctAnswer: 1 },
+      { question: "We don't ____ fishing at the lake.", choices: ["go", "goes"], correctAnswer: 0 },
+      { question: "My friend Josh ____ running in town.", choices: ["go", "goes"], correctAnswer: 1 },
+      { question: "Veronica ____ dancing with friends on the weekend.", choices: ["go", "goes"], correctAnswer: 1 },
+      { question: "I ____ horse riding in France every year.", choices: ["go", "goes"], correctAnswer: 0 },
+      { question: "I ____ .", choices: ["go to the gym", "go camping", "go out for a meal", "go sightseeing"], correctAnswer: 1, image: "img/quizImg/camping.jpg" },
+      { question: "I ____ .", choices: ["go bird watching", "do yoga", "visit a museum", "go shopping"], correctAnswer: 2, questionImage: "img/quizImg/museum.jpg" },
+      { question: "I ____ .", choices: ["do puzzles", "play board games", "take photos", "hike"], correctAnswer: 3, questionImage: "img/quizImg/hike.jpg" },
+      { question: "He ____ baseball on Sunday.", choices: ["play", "plays"], correctAnswer: 1 },
+      { question: "We don't ____ badminton anymore.", choices: ["play", "plays"], correctAnswer: 0 },
+        
+          { question: "I ____ shopping once a week.", choices: ["go", "goes"], correctAnswer: 0 },
+      { question: "She ____ to school in the morning.", choices: ["go", "goes"], correctAnswer: 1 },
+      { question: "I ____ a book every afternoon.", choices: ["read", "reads"], correctAnswer: 0 },
+      { question: "They never ____ dancing in the evening.", choices: ["go", "goes"], correctAnswer: 0 },
+      { question: "Sarah ____ pasta.", choices: ["hate", "hates"], correctAnswer: 1 },
+      { question: "Jack doens't ____ the sea.", choices: ["love", "loves"], correctAnswer: 0 },
+      { question: "You ____ like your new phone.", choices: ["doesn't", "don't"], correctAnswer: 1 },
+      { question: "She ____ love pasta.", choices: ["don't", "doesn't"], correctAnswer: 1 },
+      { question: "The dog ____ like cats.", choices: ["don't", "doesn't"], correctAnswer: 1 },
+      { question: "Why ____ you like pizza?", choices: ["don't", "doesn't"], correctAnswer: 0 },
+        
+          { question: "", choices: ["jazz", "country", "opera", "rock"], correctAnswer: 2, questionImage: "img/quizImg/opera.jpg" },
+      { question: "", choices: ["pop", "orchestra", "concert", "festival"], correctAnswer: 3, questionImage: "img/quizImg/festival.jpg"   },
+      { question: "", choices: ["violin", "saxophone", "harmonica", "trumpet"], correctAnswer: 1, questionImage: "img/quizImg/sax.jpg" },
+      { question: "", choices: ["flute", "drum", "violin", "keyboard"], correctAnswer: 2, questionImage: "img/quizImg/violin.jpg" },
+      { question: "", choices: ["singer", "audience", "soul", "classical music"], correctAnswer: 1, questionImage: "img/quizImg/audience.jpg" },
+      { question: "I like jazz and I love soul, ____ my favourite music is rock.", choices: ["and", "but"], correctAnswer: 1 },
+      { question: "Abdul ____ sailing", choices: ["love", "loves"], correctAnswer: 1 },
+      { question: "", choices: ["catch", "throw", "hit", "kick"], correctAnswer: 0, questionImage: "img/quizImg/catch.jpg" },
+      { question: "", choices: ["whisper", "talk", "kick", "shout"], correctAnswer: 2, questionImage: "img/quizImg/kick.jpg" },
+      { question: "", choices: ["whisper", "talk", "speak", "shout"], correctAnswer: 0, questionImage: "img/quizImg/whisper.jpg" },
+        
+          { question: "", choices: ["remember", "understand", "act", "carry"], correctAnswer: 3, questionImage: "img/quizImg/carry.jpg" },
+      { question: "Can not = ____ .", choices: ["cant", "cant'", "can't"], correctAnswer: 2 },
+      { question: "Can you ride a bike?", choices: ["Yes, I can't.", "No, I can't."], correctAnswer: 1 },
+      { question: "Can we climb that mountain?", choices: ["Yes, we can.", "No, we can."], correctAnswer: 0 },
+      { question: "Paul and Jerry don't like the ocean because they ____ swim.", choices: ["can", "can't"], correctAnswer: 1 },
+      { question: "My mother ____ lisf that bag because it's too heavy.", choices: ["can", "can't"], correctAnswer: 1 },
+      { question: "I ride my bike to work because I ____ drive.", choices: ["can", "can't"], correctAnswer: 1 },
+      { question: "Can you catch that big fish?", choices: ["Yes, I can't.", "Yes, I can."], correctAnswer: 1 },
+      { question: "A turtle moves ____ .", choices: ["slowley", "slowlee", "slowly"], correctAnswer: 2 },
+      { question: "I can play the piano ____ .", choices: ["badly", "badlie", "badlee"], correctAnswer: 0 },
+        
+      { question: "Ben always listens ____ .", choices: ["careful", "carefully"], correctAnswer: 1 },
+      { question: "I can get to your house ____ .", choices: ["easy", "easily"], correctAnswer: 1 },
+      { question: "Sammy always plays his guitar ____ .", choices: ["loud", "loudly"], correctAnswer: 1 },
+      { question: "We ____ go to bed at 11pm.", choices: ["usual", "usually"], correctAnswer: 1 },
+      { question: "A cheetah runs very ____ .", choices: ["fast", "fastly"], correctAnswer: 0 },
+      { question: "I can pass this exam ____ .", choices: ["easy", "easyly", "easily"], correctAnswer: 2 },
+      { question: "Which is correct?", choices: ["Elizabeth speaks very Russian well.", "Elizabeth very speaks Russian well.", "Elizabeth speaks Russian very well."], correctAnswer: 2 },
+      { question: "Which is correct?", choices: ["My dog can jump quite high.", "My dog quite can jump high.", "My dog can jump high quite."], correctAnswer: 0 },
+      { question: "Sam ____ to have a pizza.", choices: ["want", "wants"], correctAnswer: 1 },
+      { question: "Sam ____ like to eat mushrooms.", choices: ["don't", "doesn't"], correctAnswer: 1 },
+        
+          { question: "Would you ____ to go home?", choices: ["likes", "like"], correctAnswer: 1 },
+      { question: "He ____ want to climb that hill.", choices: ["don't", "doesn't"], correctAnswer: 1 },
+      { question: "I would ____ to be a judge.", choices: ["like", "want"], correctAnswer: 0 },
+      { question: "She would ____ to play tennis tonight.", choices: ["want", "wants"], correctAnswer: 0 },
+      { question: "I ____ to climb that tree.", choices: ["want", "wants"], correctAnswer: 0 },
+      { question: "____ you want to read this book?", choices: ["Does", "Do"], correctAnswer: 1 },
+      { question: "She'd ____ to buy a new phone.", choices: ["likes", "like"], correctAnswer: 1 },
+      { question: "", choices: ["biology", "chemistry", "physics", "geography"], correctAnswer: 1, questionImage: "img/quizImg/chemistry.jpg" },
+      { question: "", choices: ["biology", "chemistry", "physics", "geography"], correctAnswer: 3, questionImage: "img/quizImg/geography.jpg" },
+      { question: "", choices: ["drama", "music", "science", "history"], correctAnswer: 0, questionImage: "img/quizImg/drama.jpg" }
+        ]
+    },
+    {
+        groupNumber: 4.1,
+        totalQuestions: 3,
+        questions: [
+            { question: "In Greek mythology, who turned all that he touched into gold?", choices: ["Zeus", "Apollo", "Midas", "Ares"], correctAnswer: 2 },
+            { question: "Which Shakespearean play is also referred to as 'What You Will'?", choices: ["Twelfth Night", "Macbeth", "Hamlet", "The Tempest"], correctAnswer: 0 },
+            { question: "What is the tallest mountain in the world?", choices: ["K2", "Mount Kilimanjaro", "Mount Everest", "Mount McKinley"], correctAnswer: 2 },
+        ]
+    },
+    {
+        groupNumber: 4.2,
+        totalQuestions: 3,
+        questions: [
+            { question: "Question", choices: ["a1", "a2", "a3", "a4"], correctAnswer: 2 },
+        ]
+    },
+    {
+        groupNumber: 4.3,
+        totalQuestions: 3,
+        questions: [
+            { question: "Question", choices: ["a1", "a2", "a3", "a4"], correctAnswer: 2 },
+        ]
+    },
+    {
+        groupNumber: 4.4,
+        totalQuestions: 3,
+        questions: [
+            { question: "Question", choices: ["a1", "a2", "a3", "a4"], correctAnswer: 2 },
+        ]
+    },
+    {
+        groupNumber: 5.1,
+        totalQuestions: 3,
+        questions: [
+            { question: "Question", choices: ["a1", "a2", "a3", "a4"], correctAnswer: 2 },
+        ]
+    },
+    {
+        groupNumber: 5.2,
+        totalQuestions: 3,
+        questions: [
+            { question: "Question", choices: ["a1", "a2", "a3", "a4"], correctAnswer: 2 },
+        ]
+    },
+    {
+        groupNumber: 5.3,
+        totalQuestions: 3,
+        questions: [
+            { question: "Question", choices: ["a1", "a2", "a3", "a4"], correctAnswer: 2 },
+        ]
+    },
+    {
+        groupNumber: 5.4,
+        totalQuestions: 3,
+        questions: [
+            { question: "Question", choices: ["a1", "a2", "a3", "a4"], correctAnswer: 2 },
+        ]
+    },
+    {
+        groupNumber: 6.1,
+        totalQuestions: 3,
+        questions: [
+            { question: "Question", choices: ["a1", "a2", "a3", "a4"], correctAnswer: 2 },
+        ]
+    },
+    {
+        groupNumber: 6.2,
+        totalQuestions: 3,
+        questions: [
+            { question: "Question", choices: ["a1", "a2", "a3", "a4"], correctAnswer: 2 },
+        ]
+    },
+    {
+        groupNumber: 6.3,
+        totalQuestions: 3,
+        questions: [
+            { question: "Question", choices: ["a1", "a2", "a3", "a4"], correctAnswer: 2 },
+        ]
+    },
+    {
+        groupNumber: 6.4,
+        totalQuestions: 3,
+        questions: [
+            { question: "Question", choices: ["a1", "a2", "a3", "a4"], correctAnswer: 2 },
+        ]
+    },
+    {
+        groupNumber: 7.1,
+        totalQuestions: 3,
+        questions: [
+            { question: "Question", choices: ["a1", "a2", "a3", "a4"], correctAnswer: 2 },
+        ]
+    },
+    {
+        groupNumber: 7.2,
+        totalQuestions: 3,
+        questions: [
+            { question: "Question", choices: ["a1", "a2", "a3", "a4"], correctAnswer: 2 },
+        ]
+    },
+    {
+        groupNumber: 7.3,
+        totalQuestions: 3,
+        questions: [
+            { question: "Question", choices: ["a1", "a2", "a3", "a4"], correctAnswer: 2 },
+        ]
+    },
+    {
+        groupNumber: 7.4,
+        totalQuestions: 3,
+        questions: [
+            { question: "Question", choices: ["a1", "a2", "a3", "a4"], correctAnswer: 2 },
+        ]
+    },
+    {
+        groupNumber: 8.1,
+        totalQuestions: 3,
+        questions: [
+            { question: "Question", choices: ["a1", "a2", "a3", "a4"], correctAnswer: 2 },
+        ]
+    },
+    {
+        groupNumber: 8.2,
+        totalQuestions: 3,
+        questions: [
+            { question: "Question", choices: ["a1", "a2", "a3", "a4"], correctAnswer: 2 },
+        ]
+    },
+    {
+        groupNumber: 8.3,
+        totalQuestions: 3,
+        questions: [
+            { question: "Question", choices: ["a1", "a2", "a3", "a4"], correctAnswer: 2 },
+        ]
+    },
+    {
+        groupNumber: 8.4,
+        totalQuestions: 3,
+        questions: [
+            { question: "Question", choices: ["a1", "a2", "a3", "a4"], correctAnswer: 2 },
+        ]
+    }
+];
+        
+        
+        const progressBarColors = ['#B2DFDB', '#80CBC4', '#4DB6AC', '#26A69A', '#009688'];
+        const feedbackDiv = document.getElementById("feedback");
+        let recordedAnswers = [];
+        let groupStats = {}; // Object to store statistics for each group
+        const groupScoreTracker = {};
+        let hasAnswered = false;  // Initialize the hasAnswered state variable
+
+
+function shuffle(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+}
+
+groups.forEach(group => shuffle(group.questions));
+
+let currentGroupIndex = 0;
+let score = 0;
+let timerStarted = false;  // To check if timer has started
+let timeLeft = 5 * 60; // 5 minutes in seconds
+
+function updateTimerDisplay() {
+    const minutes = Math.floor(timeLeft / 60);
+    const seconds = timeLeft % 60;
+    document.getElementById("timer").textContent = `Time Left: ${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+}
+
+function updateScore() {
+    score++;
+    document.getElementById("score").textContent = `Score: ${score}`;
+}
+        
+// Added this function to update the score tracker for each group
+function updateGroupScore(isCorrect, groupNumber) {
+    if (!groupScoreTracker[groupNumber]) {
+        groupScoreTracker[groupNumber] = { correct: 0, total: 0 };
+    }
+    if (isCorrect) {
+        groupScoreTracker[groupNumber].correct++;
+    }
+    groupScoreTracker[groupNumber].total++;
+}
+
+function startTimer() {
+    const timerInterval = setInterval(() => {
+        timeLeft--;
+        updateTimerDisplay();
+        if (timeLeft <= 0) {
+            clearInterval(timerInterval);
+            endQuiz();
+        }
+    }, 1000);
+}
+
+function endQuiz() {
+    document.querySelector('.quiz-container').style.display = "none";
+    const endCard = document.getElementById("end-card");
+    endCard.style.display = "block"; // Show the end card
+    document.getElementById("final-score").textContent = score;
+    document.getElementById("reached-group").textContent = groups[currentGroupIndex].groupNumber;
+    setTimeout(() => {
+        endCard.style.opacity = "1"; // fade in end card
+    }, 500);
+}
+
+function getNextQuestion() {
+    if (!groups[currentGroupIndex] || groups[currentGroupIndex].questions.length === 0) {
+        // If it's the final group and no more questions, reset its questions.
+        if (currentGroupIndex === groups.length - 1) {
+            shuffle(groups[currentGroupIndex].questions);
+            return groups[currentGroupIndex].questions[0];
+        }
+        endQuiz();
+        return null;
+    }
+    return groups[currentGroupIndex].questions[0];
+}
+
+
+function displayQuestion(q) {
+    hasAnswered = false;  // Reset hasAnswered when displaying a new question
+    const questionDiv = document.getElementById("question");
+    questionDiv.style.opacity = "0"; // fade out current question
+
+      // Display optional question image
+    const questionImageDiv = document.getElementById("question-image");
+    if (q.questionImage) {
+        const img = new Image();
+        img.src = q.questionImage;
+        questionImageDiv.innerHTML = '';
+        questionImageDiv.appendChild(img);
+    } else {
+        questionImageDiv.innerHTML = '';
+    }
+    
+setTimeout(() => {
+        questionDiv.textContent = q.question;
+        questionDiv.style.opacity = "1"; // fade in new question
+
+        const choicesDiv = document.getElementById("choices");
+        choicesDiv.innerHTML = '';
+        
+        q.choices.forEach((c, i) => {
+            const btn = document.createElement("button");
+            btn.className = "choice-btn";
+            
+            if (typeof c === "string") {
+                btn.textContent = c;
+            } else {
+                // Handle choice objects with optional image
+                btn.textContent = c.text;
+                if (c.image) {
+                    const img = new Image();
+                    img.src = c.image;
+                    img.alt = c.text;
+                    btn.appendChild(img);
+                }
+            }
+            
+            btn.onclick = () => checkAnswer(i, q);
+            choicesDiv.appendChild(btn);
+        });
+    }, 500);
+}
+
+function setProgressBarColor() {
+    const innerBar = document.querySelector('.progress-bar-inner');
+    innerBar.style.backgroundColor = progressBarColors[currentGroupIndex] || progressBarColors[progressBarColors.length - 1];
+}
+
+function updateProgressBar() {
+    const percentage = ((currentGroupIndex + 1) / groups.length) * 100;
+    document.querySelector('.progress-bar-inner').style.width = `${percentage}%`;
+    document.getElementById('group-number').textContent = `Group: ${groups[currentGroupIndex].groupNumber}`;
+    setProgressBarColor();
+}
+
+
+function checkAnswer(choice, question) {
+     if (hasAnswered) return;  // Exit if hasAnswered is true
+    hasAnswered = true;  // Set hasAnswered to true
+    const currentGroupNumber = groups[currentGroupIndex].groupNumber;  // Store current group
+
+    // Start timer when user attempts first question
+    if (!timerStarted) {
+        startTimer();
+        timerStarted = true;
+    }
+
+    const correct = question.correctAnswer === choice;
+    groups[currentGroupIndex].questions.shift(); // Remove the question
+
+    if (correct) {
+        feedbackDiv.textContent = "Correct!";
+        feedbackDiv.style.color = "green";
+        feedbackDiv.style.opacity = "1"; 
+
+        // Update the score when the answer is correct
+        updateScore();  // <-- This line is added to update the score
+
+        if (currentGroupIndex < groups.length - 1) {
+            currentGroupIndex++; 
+        }
+    } else {
+        feedbackDiv.textContent = "Wrong!";
+        feedbackDiv.style.color = "red";
+        feedbackDiv.style.opacity = "1"; 
+        if (currentGroupIndex > 0) {
+            currentGroupIndex--;
+        }
+    }
+
+    if (currentGroupIndex === groups.length - 1 && !groups[currentGroupIndex].questions.length) {
+        endQuiz();
+        return; // Early exit, since we don't want to proceed further
+    }
+
+    setTimeout(() => {
+        feedbackDiv.textContent = '';
+        feedbackDiv.style.opacity = "0"; 
+
+        const nextQuestion = getNextQuestion();
+        if (nextQuestion) {
+            displayQuestion(nextQuestion);
+        }
+    }, 1000);
+    
+    const userAnswer = {
+        groupNumber: currentGroupNumber, // Use stored group number
+        question: question.question,
+        userChoice: question.choices[choice],
+        correctAnswer: question.choices[question.correctAnswer],
+        isCorrect: correct
+    };
+    recordedAnswers.push(userAnswer);
+
+    updateProgressBar();
+    
+    // Update group score statistics
+    updateGroupScore(userAnswer.isCorrect, currentGroupNumber);  // Use stored group number
+}
+
+const initialQuestion = getNextQuestion();
+if (initialQuestion) {
+    displayQuestion(initialQuestion);
+}
+
+updateProgressBar();
+        
+document.getElementById("download-pdf").addEventListener('click', function() {
+    // Prompt the user to enter their name
+    const studentName = prompt("Please enter your name:", "");
+    
+    // Check if the user pressed Cancel on the prompt
+    if (studentName === null) {
+        return; // Exit the function
+    }
+
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF();
+    let yPos = 20;
+    
+    const levelScoreTracker = {
+    'Level 1': { correct: 0, total: 0 },
+    'Level 2': { correct: 0, total: 0 },
+    'Level 3': { correct: 0, total: 0 },
+    'Level 4': { correct: 0, total: 0 },
+    'Level 5': { correct: 0, total: 0 },
+    'Level 6': { correct: 0, total: 0 },
+    'Level 7': { correct: 0, total: 0 },
+    'Level 8': { correct: 0, total: 0 },
+    'Level Advanced': { correct: 0, total: 0 },
+    
+};
+    
+    function getPercentageColor(percentage) {
+  let r, g, b;
+  if (percentage < 50) {
+    r = 255;
+    g = Math.floor((percentage / 50) * 255);
+    b = 0;
+  } else {
+    g = 255;
+    r = Math.floor((1 - ((percentage - 50) / 50)) * 255);
+    b = 0;
+  }
+  return [r, g, b];
+}
+    
+    
+// Function to check if we need a new page
+function checkPageOverflow(yPos, pageHeight, bottomMargin) {
+    if (yPos >= pageHeight - bottomMargin) {
+        doc.addPage();
+        return 20; // Reset yPos to the top margin of the new page
+    }
+    return yPos;
+}    
+    
+    // Initialize page height and margin for better positioning
+const pageHeight = doc.internal.pageSize.getHeight(); // Get page height
+const bottomMargin = 20; // Set a bottom margin
+    
+     function addFriendlyContent(doc, yPos) {
+    }
+
+    // Title
+    doc.setFontSize(24);
+    doc.setFont('helvetica', 'bold');
+    doc.text('Quiz Results', 105, yPos, null, null, 'center');
+    yPos += 10;
+    
+    // Draw Thick divider
+    doc.setLineWidth(1);
+    doc.line(10, yPos, 200, yPos);
+    yPos += 10; // Increased space
+
+    // Student Name
+    doc.setFontSize(16);
+    doc.setFont('helvetica', 'normal');
+    doc.text(`Student Name: ${studentName}`, 10, yPos);
+    const savedYPosForRecommendation = yPos;  // Save this yPos for later
+    yPos += 10;
+
+    // Draw divider
+    doc.setLineWidth(0.5);
+    doc.line(10, yPos, 200, yPos);
+    yPos += 10;
+    
+    
+    
+// Save the current yPos for later use (Start of Summary)
+const summaryYPos = yPos;
+
+   // Draw "Summary"
+doc.setFontSize(16);
+doc.setFont('helvetica', 'normal');
+doc.text(`Summary`, 10, yPos);
+yPos += 7;
+doc.setFontSize(12);
+const totalQuestions = recordedAnswers.length;
+const correctAnswers = recordedAnswers.filter(answer => answer.isCorrect).length;
+const overallPercentage = Math.round((correctAnswers / totalQuestions) * 100);  // Rounded to the nearest integer
+doc.text(`Total Questions: ${totalQuestions}`, 10, yPos);
+yPos += 7;
+doc.text(`Correct Answers: ${correctAnswers}`, 10, yPos);
+yPos += 7;
+doc.text(`Percentage: ${overallPercentage}%`, 10, yPos);
+yPos += 10;
+
+// Add Buckland level information (right column)
+doc.text('Level 1 = 0.4-0.6, Level 2 = 0.7-0.9', 10, yPos);
+yPos += 7;
+doc.text('Level 3 = 1.0-1.4, Level 4 = 1.5-1.9', 10, yPos);
+yPos += 7;
+doc.text('Level 5 = 2.0-2.9, Level 6 = 3.0-3.9', 10, yPos);
+yPos += 7;
+doc.text('Level 7 = 4.0-4.9, Level 8 = 5.0-5.9', 10, yPos);
+yPos += 7;
+doc.text('Level Advanced = 6+', 10, yPos);    
+
+// Draw a vertical line separating "Summary" and "Level Guidance"
+const levelGuidanceXPos = 110; 
+doc.setLineWidth(0.5);
+doc.line(levelGuidanceXPos, summaryYPos, levelGuidanceXPos, yPos + 5);  // Adjust the line height as needed
+
+// Reset yPos to the stored position for "Level Guidance" (same vertical start as Summary)
+yPos = summaryYPos;
+
+// Write "Level Guidance" content
+doc.setFontSize(16);
+doc.text('Level Guidance', levelGuidanceXPos + 10, yPos); // Positioned to the right
+yPos += 10;
+
+doc.setFontSize(12);
+doc.text('95% - 100%: Next Stage Ready', levelGuidanceXPos + 10, yPos);
+yPos += 7;
+doc.text('90% - 94%: Nearly Next Stage Ready', levelGuidanceXPos + 10, yPos);
+yPos += 7;
+doc.text('85% - 89%: Mastered', levelGuidanceXPos + 10, yPos);
+yPos += 7;
+doc.text('80% - 84%: Nearly Mastered', levelGuidanceXPos + 10, yPos);
+yPos += 7;
+doc.text('70% - 79%: Developing', levelGuidanceXPos + 10, yPos);
+yPos += 7;
+doc.text('60% - 69%: Needs Attention', levelGuidanceXPos + 10, yPos);
+yPos += 7;
+doc.text('40% - 59%: Emerging', levelGuidanceXPos + 10, yPos);
+yPos += 7;
+doc.text('0% - 39%: No Competency', levelGuidanceXPos + 10, yPos);
+yPos += 7;
+    // Draw divider
+    doc.setLineWidth(1);
+    doc.line(10, yPos, 200, yPos);
+    yPos += 12;
+    
+    
+function getGuidance(percentage) {
+  if (percentage >= 95) return 'Next Stage Ready';
+  if (percentage >= 90) return 'Nearly Next Stage Ready';
+  if (percentage >= 85) return 'Mastered';
+  if (percentage >= 80) return 'Nearly Mastered';
+  if (percentage >= 70) return 'Developing';
+  if (percentage >= 60) return 'Needs Attention';
+  if (percentage >= 40) return 'Emerging';
+  return 'No Competency';
+}
+    
+   // Group-wise score
+  doc.setFontSize(18);
+  doc.text('Group Wise Score:', 10, yPos);
+  yPos += 10;
+  doc.setFontSize(12);
+  for (const [groupNumber, stats] of Object.entries(groupScoreTracker)) {
+    yPos = checkPageOverflow(yPos, pageHeight, bottomMargin);
+      const percentage = Math.round((stats.correct / stats.total) * 100);  // Rounded to the nearest integer
+      
+       // Get the appropriate guidance text
+  const guidanceText = getGuidance(percentage);
+      
+      const getPercentageColor = (percentage) => {
+  if (percentage >= 95) return [0, 128, 0];  // Dark green for "Next Stage Ready"
+  if (percentage >= 90) return [0, 255, 0];  // Light green for "Nearly Next Stage Ready"
+  if (percentage >= 85) return [255, 255, 0];  // Yellow for "Mastered"
+  if (percentage >= 80) return [255, 223, 0];  // Light yellow for "Nearly Mastered"
+  if (percentage >= 70) return [255, 165, 0];  // Orange for "Developing"
+  if (percentage >= 60) return [255, 99, 71];  // Tomato color for "Needs Attention"
+  if (percentage >= 40) return [255, 0, 0];  // Red for "Emerging"
+  return [128, 0, 0];  // Dark red for "No Competency"
+};
+      
+      // Add a colored rectangle marker based on percentage
+      const color = getPercentageColor(percentage);
+      doc.setFillColor(color[0], color[1], color[2]);
+      doc.rect(190, yPos - 5, 5, 5, 'F');
+
+      // Include the guidance text next to the percentage
+  doc.text(`Group ${groupNumber} - Correct Answers: ${stats.correct}, Total Questions: ${stats.total}, Percentage: ${percentage}% (${guidanceText})`, 10, yPos);
+  yPos += 7;
+      
+      if (['3.1', '3.2', '3.3', '3.4'].includes(groupNumber)) {
+        levelScoreTracker['Level 3'].correct += stats.correct;
+        levelScoreTracker['Level 3'].total += stats.total;
+    } else if (['4.1', '4.2', '4.3', '4.4'].includes(groupNumber)) {
+        levelScoreTracker['Level 4'].correct += stats.correct;
+        levelScoreTracker['Level 4'].total += stats.total;
+    }else if (['5.1', '5.2', '5.3', '5.4'].includes(groupNumber)) {
+        levelScoreTracker['Level 5'].correct += stats.correct;
+        levelScoreTracker['Level 5'].total += stats.total;
+    }else if (['6.1', '6.2', '6.3', '6.4'].includes(groupNumber)) {
+        levelScoreTracker['Level 6'].correct += stats.correct;
+        levelScoreTracker['Level 6'].total += stats.total;
+    }else if (['7.1', '7.2', '7.3', '7.4'].includes(groupNumber)) {
+        levelScoreTracker['Level 7'].correct += stats.correct;
+        levelScoreTracker['Level 7'].total += stats.total;
+    }else if (['8.1', '8.2', '8.3','8.4'].includes(groupNumber)) {
+        levelScoreTracker['Level 8'].correct += stats.correct;
+        levelScoreTracker['Level 8'].total += stats.total;
+    }
+    // Add more 'else if' conditions for other levels
+  }
+    
+   // Draw divider
+doc.setLineWidth(1);
+doc.line(10, yPos, 200, yPos);
+yPos += 10;
+    
+// Level-wise score
+doc.setFontSize(16);
+doc.text('Level Wise Score:', 10, yPos);
+yPos += 7;
+doc.setFontSize(12);
+
+// Loop through the levelScoreTracker object
+for (const [levelName, stats] of Object.entries(levelScoreTracker)) {
+    yPos = checkPageOverflow(yPos, pageHeight, bottomMargin);
+
+    // Only include the level if questions have been attempted (stats.total > 0)
+    if (stats.total > 0) {
+        let percentage = Math.round((stats.correct / stats.total) * 100);  // Rounded to the nearest integer
+
+        // Get the appropriate guidance text
+        const guidanceText = getGuidance(percentage);
+        
+        const getPercentageColor = (percentage) => {
+  if (percentage >= 95) return [0, 128, 0];  // Dark green for "Next Stage Ready"
+  if (percentage >= 90) return [0, 255, 0];  // Light green for "Nearly Next Stage Ready"
+  if (percentage >= 85) return [255, 255, 0];  // Yellow for "Mastered"
+  if (percentage >= 80) return [255, 223, 0];  // Light yellow for "Nearly Mastered"
+  if (percentage >= 70) return [255, 165, 0];  // Orange for "Developing"
+  if (percentage >= 60) return [255, 99, 71];  // Tomato color for "Needs Attention"
+  if (percentage >= 40) return [255, 0, 0];  // Red for "Emerging"
+  return [128, 0, 0];  // Dark red for "No Competency"
+};
+
+        // Add a colored rectangle marker based on percentage
+        const color = getPercentageColor(percentage);
+        doc.setFillColor(color[0], color[1], color[2]);
+        doc.rect(190, yPos - 5, 5, 5, 'F');
+
+        // Include the guidance text next to the percentage
+        doc.text(`${levelName} - Correct Answers: ${stats.correct}, Total Questions: ${stats.total}, Percentage: ${percentage}% (${guidanceText})`, 10, yPos);
+        yPos += 7;
+    }
+}
+    
+     // Draw divider
+doc.setLineWidth(1);
+doc.line(10, yPos, 200, yPos);
+yPos += 10;
+    
+yPos = checkPageOverflow(yPos, pageHeight, bottomMargin);    
+    
+// Calculate recommended level
+let recommendedLevel = "None";
+let highestPercentage = 0;
+for (const [levelName, stats] of Object.entries(levelScoreTracker)) {
+    let percentage = 0;  // Default value
+    if (stats.total > 0) {
+        // Calculate the percentage if stats.total is not zero to avoid NaN
+        percentage = Math.round((stats.correct / stats.total) * 100);
+    }
+    if (percentage > highestPercentage) {
+        highestPercentage = percentage;
+        recommendedLevel = levelName;
+    }
+}
+
+// If the highest percentage is above a certain threshold, recommend the next level
+if (highestPercentage > 75) {
+    // Logic to get next level, assuming your levels are named 'Level 1', 'Level 2', etc.
+    if (recommendedLevel === 'Level Advanced') {
+        // If they're already at the highest level, perhaps you don't recommend a next level
+    } else {
+        let currentLevelNumber = parseInt(recommendedLevel.split(' ')[1]); // Extract the number part from "Level X"
+        let nextLevelNumber = currentLevelNumber + 1;
+        recommendedLevel = 'Level ' + nextLevelNumber;
+    }
+}
+    
+// Go back to the yPos where the student name was written
+yPos = savedYPosForRecommendation;
+
+
+// Print the recommended level
+doc.setFontSize(16);
+doc.text(`Recommended Level: ${recommendedLevel}`, 110, yPos);
+yPos += 7;
+
+// Save the current yPos for later use
+const savedYPos = yPos;
+    
+// Reset yPos to where it was before, so that the next text column aligns properly
+yPos = savedYPos;
+
+
+
+    // Footer
+    const currentDate = new Date();
+    doc.setFontSize(10);
+    doc.text(`Date: ${currentDate.toDateString()}`, 10, doc.internal.pageSize.getHeight() - 10);
+    
+      // Add the student/parent-friendly content as a new page
+    addFriendlyContent(doc, yPos);
+
+    doc.save("Quiz-Results.pdf");
+});
+
+    </script>
+</body>
+
+</html>
